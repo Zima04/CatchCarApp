@@ -1,0 +1,21 @@
+<div class="container">
+  <mat-card class="card">
+    <div class="header-span" [textContent]="constants.headerText"></div>
+    <div class="choice-block">
+      <div class="position" (click)="choosePosition('водитель')">
+        <div class="icon-block">
+          <i class="fa fa-car fa-3x" aria-hidden="true"> </i>
+        </div>
+        <span class="position-span" [textContent]="constants.driver"></span>
+
+      </div>
+      <div class="position" (click)="choosePosition('пассажир')">
+        <div class="icon-block">
+          <i class="fa fa-male fa-3x" aria-hidden="true"> </i>
+        </div>
+        <div class="position-span" [textContent]="constants.passenger"></div>
+
+      </div>
+    </div>
+  </mat-card>
+</div>

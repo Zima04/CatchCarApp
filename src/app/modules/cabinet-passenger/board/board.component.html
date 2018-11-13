@@ -1,0 +1,154 @@
+<div class="container">
+  <mat-card class="card-cont">
+    <mat-card-header>
+      <mat-card-title>Настройте параметры поездки :</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="functional-block">
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Начальная точка" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+              <span>{{state.name}}</span> |
+              <small>Population: {{state.population}}</small>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Конечная точка" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+              <span>{{state.name}}</span> |
+              <small>Population: {{state.population}}</small>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="da" placeholder="Выберите день">
+          <mat-datepicker-toggle matSuffix [for]="da"></mat-datepicker-toggle>
+          <mat-datepicker #da></mat-datepicker>
+        </mat-form-field>
+
+        <div class="clock-container">
+          <input class="clock" placeholder="Выберите время" [ngxTimepicker]="fullTime" [format]="24"  readonly>
+          <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+          <ngx-material-timepicker-toggle [for]="fullTime" class="clock-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="16px" height="16px" ngxMaterialTimepickerToggleIcon>
+              <path d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M16,16H7.995 C7.445,16,7,15.555,7,15.005v-0.011C7,14.445,7.445,14,7.995,14H14V5.995C14,5.445,14.445,5,14.995,5h0.011 C15.555,5,16,5.445,16,5.995V16z"/>
+            </svg>
+          </ngx-material-timepicker-toggle>
+        </div>
+
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="card-cont-dark">
+    <mat-card-header>
+      <mat-card-title>Выберите наиболее подходящий маршрут :</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="map-info">
+        <div class="map-container">
+          <map-app></map-app>
+        </div>
+        <div class="list-drivers">
+          <div class="header-list-drivers">Вам по пути с водителями:</div>
+          <div class="item-driver" *ngFor="let driver of drivers;let i = index">
+            {{i+1}})<span class="span-driver">{{driver}}</span><i class="fa fa-car" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <div >
+    <div>Scrollable content</div>
+  </div>
+  <div class="driver-information-block">
+    <mat-card class="container-card">
+      <mat-card-header>
+        <mat-card-title>Выбранный водитель :</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-card class="driver-card">
+          <mat-card-header>
+            <div mat-card-avatar class="card-header-image"></div>
+            <mat-card-title>Александров Петр</mat-card-title>
+            <mat-card-subtitle>Сергеевич</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              BMW F10, 2010<br>
+              Еду быстро и надежно, каждое утро на Уручье.Оплату принимаю печенками :)
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>Подтвердить поездку</button>
+            <button mat-button>Больше не показывать</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="container-card">
+      <mat-card-header>
+        <mat-card-title>Отзывы пассажиров :</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-card class="reviews-item">
+          <mat-card-header>
+            <div mat-card-avatar class="card-header-image"></div>
+            <mat-card-title>Аникеева Нина</mat-card-title>
+            <mat-card-subtitle>Петровна</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              Отличный водитель.Просто пулемёт.Интересный баблабол
+            </p>
+            <p-rating [ngModel]="5" readonly="true" stars="5" [cancel]="false"></p-rating>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="reviews-item">
+          <mat-card-header>
+            <div mat-card-avatar class="card-header-image"></div>
+            <mat-card-title>Аникеева Нина</mat-card-title>
+            <mat-card-subtitle>Петровна</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              Отличный водитель.Просто пулемёт.Интересный баблабол
+            </p>
+            <p-rating [ngModel]="2" readonly="true" stars="5" [cancel]="false"></p-rating>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="reviews-item">
+          <mat-card-header>
+            <div mat-card-avatar class="card-header-image"></div>
+            <mat-card-title>Аникеева Нина</mat-card-title>
+            <mat-card-subtitle>Петровна</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              Отличный водитель.Просто пулемёт.Интересный баблабол
+
+              <p-rating [ngModel]="3" readonly="true" stars="5" [cancel]="false"></p-rating>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="reviews-item">
+          <mat-card-header>
+            <div mat-card-avatar class="card-header-image"></div>
+            <mat-card-title>Аникеева Нина</mat-card-title>
+            <mat-card-subtitle>Петровна</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              Отличный водитель.Просто пулемёт.Интересный баблабол
+            </p>
+            <p-rating [ngModel]="5" readonly="true" stars="5" [cancel]="false"></p-rating>
+          </mat-card-content>
+        </mat-card>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

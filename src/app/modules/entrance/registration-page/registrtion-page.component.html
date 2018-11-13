@@ -1,0 +1,33 @@
+<div class="inner" id="inner">
+  <div class="container form-container">
+    <div class="form-header">
+      Регистрация {{position}}
+    </div>
+    <form [formGroup]="loginForm" class="login-form">
+      <div class="form-row">
+        <div class="form-row-text">
+          Телефон:
+        </div>
+        <input mask="00-000-00-00" prefix="+(375)" [showMaskTyped]="true" class="form-input" formControlName="phone">
+      </div>
+      <div class="form-row">
+        <div class="form-row-text">
+          Пароль:
+        </div>
+        <input class="form-input" type="password" formControlName="password">
+      </div>
+      <div class="form-row">
+        <div class="form-row-text">
+          Потвердите пароль:
+        </div>
+        <input class="form-input" type="password" formControlName="confirm_password">
+      </div>
+      <div class="form-footer">
+        <input type="submit" class="submit-button" value="Зарегистрироваться"
+               [ngClass]="{'disable':loginForm.invalid && loginForm.touched && loginForm.dirty || loginForm.untouched}"
+               (click)="login()" [disabled]="loginForm.invalid && loginForm.touched && loginForm.dirty || loginForm.untouched"
+        >
+      </div>
+    </form>
+  </div>
+</div>

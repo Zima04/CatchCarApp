@@ -1,0 +1,42 @@
+.header{
+  background-color: #00695c;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  color: #ffffff;
+
+  .logo-block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 25px;
+    font-size: 24px;
+
+    .logo-image {
+      background: url(/assets/logos/main-logo.png);
+      width: 160px;
+      height: 36px;
+      margin-left: 20px;
+    }
+  }
+
+  .person-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+
+    .person-image{
+      background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+      background-size: cover;
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+    }
+
+    .person-name{
+        padding-left: 10px;
+    }
+  }
+}

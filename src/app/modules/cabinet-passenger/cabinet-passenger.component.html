@@ -1,0 +1,30 @@
+<header-app (burgerState)="drawer.toggle()"></header-app>
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side" >
+    <div class="menu">
+      <div class="item">
+        <i class="fa fa-list-alt" aria-hidden="true"></i>
+        <span>Карта</span>
+      </div>
+      <div class="item">
+        <i class="fa fa-road" aria-hidden="true"></i>
+        <span>История поездок</span>
+      </div>
+      <div class="item">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+        <span>Настройки</span>
+      </div>
+      <div class="item" (click)="exit()">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <span>Выход</span>
+      </div>
+    </div>
+  </mat-drawer>
+  <div class="sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>
+<footer-app></footer-app>
+
+
+
