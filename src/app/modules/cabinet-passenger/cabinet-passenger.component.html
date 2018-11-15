@@ -2,17 +2,11 @@
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side" >
     <div class="menu">
-      <div class="item">
-        <i class="fa fa-list-alt" aria-hidden="true"></i>
-        <span>Карта</span>
-      </div>
-      <div class="item">
-        <i class="fa fa-road" aria-hidden="true"></i>
-        <span>История поездок</span>
-      </div>
-      <div class="item">
-        <i class="fa fa-cog" aria-hidden="true"></i>
-        <span>Настройки</span>
+      <div class="item" routerLink="{{link.url}}" *ngFor="let link of links;let i = index"
+           [ngClass]="{selectLink: i == selectLink}"
+           (click)="selectLink = i">
+        <i class="{{link.icon}}" aria-hidden="true"></i>
+        <span>{{link.name}}</span>
       </div>
       <div class="item" (click)="exit()">
         <i class="fa fa-sign-out" aria-hidden="true"></i>

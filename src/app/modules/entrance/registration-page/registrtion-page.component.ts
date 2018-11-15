@@ -33,6 +33,9 @@ export class RegistrtionPageComponent implements OnInit, AfterViewInit {
     setTimeout(function () {
       document.getElementById('inner').style.opacity = '1';
     }, 100);
+  }
 
+  registration() {
+    console.log(this.loginForm.value);
   }
 }

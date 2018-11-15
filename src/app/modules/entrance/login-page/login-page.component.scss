@@ -131,3 +131,17 @@
     }
   }
 }
+
+@media only screen and (max-width: 900px) {
+  .form-container {
+    min-width: 300px !important;
+
+    .form-header{
+      line-height: 28px!important;
+    }
+    .form-row {
+      flex-direction: column;
+
+    }
+  }
+}

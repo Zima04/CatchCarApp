@@ -25,7 +25,7 @@
       <div class="form-footer">
         <input type="submit" class="submit-button" value="Зарегистрироваться"
                [ngClass]="{'disable':loginForm.invalid && loginForm.touched && loginForm.dirty || loginForm.untouched}"
-               (click)="login()" [disabled]="loginForm.invalid && loginForm.touched && loginForm.dirty || loginForm.untouched"
+               (click)="registration()" [disabled]="loginForm.invalid && loginForm.touched && loginForm.dirty || loginForm.untouched"
         >
       </div>
     </form>

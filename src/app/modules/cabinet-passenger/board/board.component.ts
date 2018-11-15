@@ -1,7 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {MapServiceService} from '../../../services/map-service.service';
 
 @Component({
   selector: 'app-board',
@@ -11,49 +9,191 @@ import {map, startWith} from 'rxjs/operators';
 
 export class BoardComponent implements OnInit {
 
-  drivers: string[] = ['Александров Петр', 'Евдокимов Олег', 'Семенова Анна', 'Титевук Константин'];
+  @ViewChild('searchStart')
+  public searchStartPositionElementRef: ElementRef;
+  @ViewChild('searchFinish')
+  public searchFinishPositionElementRef: ElementRef;
 
-  stateCtrl = new FormControl();
-  filteredStates: Observable<State[]>;
+  // driverDestination: any;
+  selectDriverInfo: Driver;
+  numberDriver: number;
+  // drivers: any[] = [
+  //   {
+  //     driver: 'Александров Петр',
+  //     start: {lat: 53.91900254, lng: 27.56883707},
+  //     finish: {lat: 53.89554162, lng: 27.50017252}
+  //   },
+  //   {
+  //     driver: 'Евдокимов Олег',
+  //     start: {lat: 53.9052831, lng: 27.5391841},
+  //     finish: {lat: 53.9039455, lng: 27.5524449}
+  //   },
+  //   {
+  //     driver: 'Семенова Анна',
+  //     start: {lat: 53.9412651, lng: 27.6880516},
+  //     finish: {lat: 53.8663053, lng: 27.4937871}
+  //   },
+  //   {
+  //     driver: 'Титевук Константин',
+  //     start: {lat: 53.8663053, lng: 27.5494088},
+  //     finish: {lat: 53.8393437, lng: 27.5009965}
+  //   }];
 
-  states: State[] = [
+  driversInformation: Driver[] = [
     {
-      name: 'Arkansas',
-      population: '2.978M',
+      name: 'Александров Петр',
+      dateTrip: '29.10.2018',
+      timeTrip: '15:45',
+      start: {lat: 53.91900254, lng: 27.56883707},
+      finish: {lat: 53.89554162, lng: 27.50017252},
+      carName: 'BMW F10,2017',
+      aboutDriver: '  Еду быстро и надежно, каждое утро на Уручье.Оплату принимаю печенками :)',
+      phoneNumber: '+375-29-292-24-02',
+      reviews: [{
+        author: 'Анна Коренина',
+        stars: 4,
+        description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
+      },
+        {
+          author: 'Мария Акакиевич',
+          stars: 2,
+          description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
+        },
+        {
+          author: 'Ольга Петрова',
+          stars: 5,
+          description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
+        },
+        {
+          author: 'Петр Вальштейн',
+          stars: 2,
+          description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
+        },
+      ],
     },
     {
-      name: 'California',
-      population: '39.14M',
+      name: 'Евдокимов Олег',
+      dateTrip: '15.10.2018',
+      timeTrip: '23:45',
+      start: {lat: 53.9052831, lng: 27.5391841},
+      finish: {lat: 53.9039455, lng: 27.5524449},
+      carName: 'Audi A8,2017',
+      aboutDriver: '  Еду быстро и надежно, каждое утро на Уручье.Оплату принимаю печенками :)',
+      phoneNumber: '+375-29-292-24-02',
+      reviews: [{
+        author: 'Анна Коренина',
+        stars: 4,
+        description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
+      },
+        {
+          author: 'Мария Акакиевич',
+          stars: 2,
+          description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
+        },
+        {
+          author: 'Ольга Петрова',
+          stars: 5,
+          description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
+        },
+        {
+          author: 'Петр Вальштейн',
+          stars: 2,
+          description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
+        },
+      ],
     },
     {
-      name: 'Florida',
-      population: '20.27M',
+      name: 'Семенова Анна',
+      dateTrip: '27.10.2018',
+      timeTrip: '10:00',
+      start: {lat: 53.9412651, lng: 27.6880516},
+      finish: {lat: 53.8663053, lng: 27.4937871},
+      carName: 'Siat Tiago,2011',
+      aboutDriver: '  Еду быстро и надежно, каждое утро на Уручье.Оплату принимаю печенками :)',
+      phoneNumber: '+375-29-292-24-02',
+      reviews: [{
+        author: 'Анна Коренина',
+        stars: 4,
+        description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
+      },
+        {
+          author: 'Мария Акакиевич',
+          stars: 2,
+          description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
+        },
+        {
+          author: 'Ольга Петрова',
+          stars: 5,
+          description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
+        },
+        {
+          author: 'Петр Вальштейн',
+          stars: 2,
+          description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
+        },
+      ],
     },
     {
-      name: 'Texas',
-      population: '27.47M',
-    }
+      name: 'Титевук Константин',
+      dateTrip: '29.10.2018',
+      timeTrip: '18:20',
+      start: {lat: 53.8663053, lng: 27.5494088},
+      finish: {lat: 53.8393437, lng: 27.5009965},
+      carName: 'Volvo S70,2014',
+      aboutDriver: '  Еду быстро и надежно, каждое утро на Уручье.Оплату принимаю печенками :)',
+      phoneNumber: '+375-29-292-24-02',
+      reviews: [{
+        author: 'Анна Коренина',
+        stars: 4,
+        description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
+      },
+        {
+          author: 'Мария Акакиевич',
+          stars: 2,
+          description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
+        },
+        {
+          author: 'Ольга Петрова',
+          stars: 5,
+          description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
+        },
+        {
+          author: 'Петр Вальштейн',
+          stars: 2,
+          description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
+        },
+      ],
+    },
   ];
 
-  constructor() {
-    this.filteredStates = this.stateCtrl.valueChanges
-      .pipe(
-        startWith(''),
-        map(state => state ? this._filterStates(state) : this.states.slice())
-      );
-  }
-
-  private _filterStates(value: string): State[] {
-    const filterValue = value.toLowerCase();
-
-    return this.states.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);
+  constructor(private mapService: MapServiceService) {
   }
 
   ngOnInit() {
+    this.changeWay(0);
+  }
+
+  changeWay(driverNumber) {
+    this.selectDriverInfo = this.driversInformation[driverNumber];
+    this.numberDriver = driverNumber;
+    this.mapService.updateMap({start: this.driversInformation[driverNumber].start, finish: this.driversInformation[driverNumber].finish});
   }
 }
 
-interface State {
+export class Driver {
   name: string;
-  population: string;
+  dateTrip: string;
+  timeTrip: string;
+  carName: string;
+  aboutDriver: string;
+  phoneNumber: string;
+  start: object;
+  finish: object;
+  reviews: Review[];
+}
+
+export class Review {
+  author: string;
+  stars: number;
+  description: string;
 }

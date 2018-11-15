@@ -1,16 +1,15 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {LayoutComponent} from './layout/layout.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {SettingsComponent} from './settings/settings.component';
 import {HistoryComponent} from './history/history.component';
 import {BoardComponent} from './board/board.component';
 import {CabinetPassengerRoutingModule} from './cabinet-passenger-routing.module';
 import {SharedModule} from '../../shared/shared.module';
 import {CabinetPassengerComponent} from './cabinet-passenger.component';
+import {MapServiceService} from '../../services/map-service.service';
 
 @NgModule({
   declarations: [
-    LayoutComponent,
     SettingsComponent,
     HistoryComponent,
     BoardComponent,
@@ -20,6 +19,8 @@ import {CabinetPassengerComponent} from './cabinet-passenger.component';
     CommonModule,
     CabinetPassengerRoutingModule,
     SharedModule,
-  ]
+  ],
+  providers: [MapServiceService],
 })
-export class CabinetPassengerModule { }
+export class CabinetPassengerModule {
+}

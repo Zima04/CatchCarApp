@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  background-color: #e8ebf0 ;
+  background-color: #e8ebf0;
 }
 
 .sidenav-content {
@@ -10,26 +10,31 @@
 
 .sidenav {
 
-  .menu{
+  .menu {
     display: flex;
     flex-direction: column;
 
-    .item{
+    .selectLink{
+      background-color: #d2d2d2;
+    }
+
+    .item {
       display: flex;
       align-items: center;
       line-height: 40px;
       cursor: pointer;
-      padding: 5px 20px ;
+      padding: 5px 20px;
+      outline:none;
 
-      span{
+      span {
         padding-left: 10px;
       }
 
-      &:hover{
+      &:hover {
         background-color: #d2d2d2;
       }
 
-      &:last-child{
+      &:last-child {
         color: #ffffff;
         border-top: #00695c 1px solid;
         border-bottom: #00695c 1px solid;
@@ -37,4 +42,8 @@
       }
     }
   }
+}
+
+/deep/ .mat-drawer-inner-container {
+  width: 270px!important;
 }

@@ -8,6 +8,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     background-color: #ffffff;
     box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
     border-radius: 4px;
@@ -16,8 +17,10 @@
     mat-form-field {
       padding: 15px 10px 3px;
     }
+
     .clock-container {
       display: flex;
+      padding: 15px 10px 14px;
 
       .clock {
         padding: 0.56em 0;
@@ -67,29 +70,42 @@
       .header-list-drivers {
         text-align: center;
         line-height: 40px;
-        font-size: 22px;
-        background-color: #b1b32d;
-        color: #ffffff;
+        color: #111111;
         border-top-right-radius: 6px;
+        background-color: #e8ebf0;
+      }
+
+      .selectDriver{
+        background-color: #6f9d74;
+        color: #ffffff!important;
+        cursor: pointer;
+        border-radius: 6px;
       }
 
       .item-driver {
         display: flex;
         padding: 8px;
         color: #111111;
-        font-size: 20px;
+        min-width: 300px;
+
         span {
           padding-left: 4px;
-          width: 80%;
+          width: 70%;
         }
 
-        i:hover {
-          color: #ffffff;
+        i {
+          padding: 0 5px;
+
+          &:hover {
+            color: #eebc7c;
+          }
         }
 
         &:hover {
           background-color: #6f9d74;
+          color: #ffffff;
           cursor: pointer;
+          border-radius: 6px;
         }
       }
     }
@@ -100,7 +116,8 @@
     justify-content: space-between;
 
     .driver-card {
-      max-height: 200px;
+      //max-height: 200px;
+
     }
 
     .card-header-image {
@@ -109,7 +126,7 @@
     }
 
     .container-card {
-      width: 48%;
+      width: 49%;
       background-color: #4c8c4a;
       color: #ffffff;
       //max-height: 300px;
@@ -127,10 +144,20 @@
   margin-bottom: 20px;
 }
 
-.card-cont-dark{
-  background-color: #00695c;
-  color: #ffffff;
+.card-cont-dark {
+  color: #2d2d2d;
   margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 850px) {
+  .map-info,.driver-information-block {
+    flex-direction: column;
+
+    .container-card{
+      width: 100%!important;
+      margin-bottom: 20px;
+    }
+  }
 }
 
 

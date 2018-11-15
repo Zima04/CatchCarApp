@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  appName: 'productionApp',
+  links: ['https://yandex.by/maps', 'https://yandex.by/'],
 };

@@ -7,23 +7,13 @@
       <div class="functional-block">
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Начальная точка" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-              <span>{{state.name}}</span> |
-              <small>Population: {{state.population}}</small>
-            </mat-option>
-          </mat-autocomplete>
+          <input matInput  placeholder="Конечная точка" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+                 class="form-control" #searchStart >
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Конечная точка" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-              <span>{{state.name}}</span> |
-              <small>Population: {{state.population}}</small>
-            </mat-option>
-          </mat-autocomplete>
+        <input matInput  placeholder="Конечная точка" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+               class="form-control" #searchFinish >
         </mat-form-field>
 
         <mat-form-field>
@@ -33,11 +23,13 @@
         </mat-form-field>
 
         <div class="clock-container">
-          <input class="clock" placeholder="Выберите время" [ngxTimepicker]="fullTime" [format]="24"  readonly>
+          <input class="clock" placeholder="Выберите время" [ngxTimepicker]="fullTime" [format]="24" readonly>
           <ngx-material-timepicker #fullTime></ngx-material-timepicker>
           <ngx-material-timepicker-toggle [for]="fullTime" class="clock-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="16px" height="16px" ngxMaterialTimepickerToggleIcon>
-              <path d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M16,16H7.995 C7.445,16,7,15.555,7,15.005v-0.011C7,14.445,7.445,14,7.995,14H14V5.995C14,5.445,14.445,5,14.995,5h0.011 C15.555,5,16,5.445,16,5.995V16z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="16px" height="16px"
+                 ngxMaterialTimepickerToggleIcon>
+              <path
+                d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M16,16H7.995 C7.445,16,7,15.555,7,15.005v-0.011C7,14.445,7.445,14,7.995,14H14V5.995C14,5.445,14.445,5,14.995,5h0.011 C15.555,5,16,5.445,16,5.995V16z"/>
             </svg>
           </ngx-material-timepicker-toggle>
         </div>
@@ -52,20 +44,23 @@
     <mat-card-content>
       <div class="map-info">
         <div class="map-container">
-          <map-app></map-app>
+          <map-app [startPosition]="searchStartPositionElementRef" [finishPosition]="searchFinishPositionElementRef"></map-app>
         </div>
         <div class="list-drivers">
           <div class="header-list-drivers">Вам по пути с водителями:</div>
-          <div class="item-driver" *ngFor="let driver of drivers;let i = index">
-            {{i+1}})<span class="span-driver">{{driver}}</span><i class="fa fa-car" aria-hidden="true"></i>
+          <div class="item-driver" *ngFor="let driver of driversInformation;let i = index" (click)="changeWay(i)"
+               [ngClass]="{selectDriver: i == numberDriver}">
+            {{i+1}})<span class="span-driver">{{driver.name}}</span>
+            <div class="benifits">
+              <i class="fa fa-car" aria-hidden="true" matTooltip="{{driver.carName}}"></i>
+              <i class="fa fa-clock-o" aria-hidden="true" matTooltip="{{driver.dateTrip}} {{driver.timeTrip}}"></i>
+              <i class="fa fa-calendar-check-o" aria-hidden="true" matTooltip="Водитель ездит каждый день"></i>
+            </div>
           </div>
         </div>
       </div>
     </mat-card-content>
   </mat-card>
-  <div >
-    <div>Scrollable content</div>
-  </div>
   <div class="driver-information-block">
     <mat-card class="container-card">
       <mat-card-header>
@@ -75,13 +70,14 @@
         <mat-card class="driver-card">
           <mat-card-header>
             <div mat-card-avatar class="card-header-image"></div>
-            <mat-card-title>Александров Петр</mat-card-title>
-            <mat-card-subtitle>Сергеевич</mat-card-subtitle>
+            <mat-card-title>{{selectDriverInfo.name}}</mat-card-title>
+            <mat-card-subtitle>{{selectDriverInfo.dateTrip}} {{selectDriverInfo.timeTrip}}</mat-card-subtitle>
+            <mat-card-subtitle>{{selectDriverInfo.phoneNumber}}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
             <p>
-              BMW F10, 2010<br>
-              Еду быстро и надежно, каждое утро на Уручье.Оплату принимаю печенками :)
+              {{selectDriverInfo.carName}}<br>
+              {{selectDriverInfo.aboutDriver}}
             </p>
           </mat-card-content>
           <mat-card-actions>
@@ -96,56 +92,16 @@
         <mat-card-title>Отзывы пассажиров :</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <mat-card class="reviews-item">
+        <mat-card class="reviews-item" *ngFor="let review of selectDriverInfo.reviews">
           <mat-card-header>
             <div mat-card-avatar class="card-header-image"></div>
-            <mat-card-title>Аникеева Нина</mat-card-title>
-            <mat-card-subtitle>Петровна</mat-card-subtitle>
+            <mat-card-title>{{review.author}}</mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <p>
-              Отличный водитель.Просто пулемёт.Интересный баблабол
+              {{review.description}}
             </p>
-            <p-rating [ngModel]="5" readonly="true" stars="5" [cancel]="false"></p-rating>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="reviews-item">
-          <mat-card-header>
-            <div mat-card-avatar class="card-header-image"></div>
-            <mat-card-title>Аникеева Нина</mat-card-title>
-            <mat-card-subtitle>Петровна</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Отличный водитель.Просто пулемёт.Интересный баблабол
-            </p>
-            <p-rating [ngModel]="2" readonly="true" stars="5" [cancel]="false"></p-rating>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="reviews-item">
-          <mat-card-header>
-            <div mat-card-avatar class="card-header-image"></div>
-            <mat-card-title>Аникеева Нина</mat-card-title>
-            <mat-card-subtitle>Петровна</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Отличный водитель.Просто пулемёт.Интересный баблабол
-
-              <p-rating [ngModel]="3" readonly="true" stars="5" [cancel]="false"></p-rating>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="reviews-item">
-          <mat-card-header>
-            <div mat-card-avatar class="card-header-image"></div>
-            <mat-card-title>Аникеева Нина</mat-card-title>
-            <mat-card-subtitle>Петровна</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Отличный водитель.Просто пулемёт.Интересный баблабол
-            </p>
-            <p-rating [ngModel]="5" readonly="true" stars="5" [cancel]="false"></p-rating>
+            <p-rating [ngModel]="review.stars" readonly="true" stars="5" [cancel]="false"></p-rating>
           </mat-card-content>
         </mat-card>
       </mat-card-content>

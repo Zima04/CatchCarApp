@@ -7,9 +7,9 @@ import {
   MatCardModule, MatDatepickerModule,
   MatIconModule,
   MatInputModule,
-  MatMenuModule, MatNativeDateModule,
-  MatSidenavModule,
-  MatToolbarModule
+  MatMenuModule, MatNativeDateModule, MatPaginatorModule,
+  MatSidenavModule, MatSortModule, MatTableModule,
+  MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxMaskModule} from 'ngx-mask';
@@ -21,6 +21,8 @@ import {RatingModule} from 'primeng/rating';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import {ImageUploaderModule} from 'ngx-image-uploader';
+import {AgmDirectionModule} from 'agm-direction';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -38,10 +40,13 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatCardModule,
     MatButtonModule,
     MatMenuModule,
+    MatSortModule,
+    MatPaginatorModule,
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
     MatInputModule,
+    MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatSidenavModule,
@@ -53,6 +58,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RatingModule,
     FormsModule,
     PerfectScrollbarModule,
+    MatTooltipModule,
+    ImageUploaderModule,
+    AgmDirectionModule,
   ],
   exports: [
     MatCardModule,
@@ -62,6 +70,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatNativeDateModule,
     MatToolbarModule,
     MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatAutocompleteModule,
     MatInputModule,
     MatDatepickerModule,
@@ -75,7 +86,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgxMaterialTimepickerModule,
     RatingModule,
     FormsModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    MatTooltipModule,
+    ImageUploaderModule,
+    AgmDirectionModule,
   ],
   providers: [
     {
