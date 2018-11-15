@@ -14,30 +14,8 @@ export class BoardComponent implements OnInit {
   @ViewChild('searchFinish')
   public searchFinishPositionElementRef: ElementRef;
 
-  // driverDestination: any;
   selectDriverInfo: Driver;
   numberDriver: number;
-  // drivers: any[] = [
-  //   {
-  //     driver: 'Александров Петр',
-  //     start: {lat: 53.91900254, lng: 27.56883707},
-  //     finish: {lat: 53.89554162, lng: 27.50017252}
-  //   },
-  //   {
-  //     driver: 'Евдокимов Олег',
-  //     start: {lat: 53.9052831, lng: 27.5391841},
-  //     finish: {lat: 53.9039455, lng: 27.5524449}
-  //   },
-  //   {
-  //     driver: 'Семенова Анна',
-  //     start: {lat: 53.9412651, lng: 27.6880516},
-  //     finish: {lat: 53.8663053, lng: 27.4937871}
-  //   },
-  //   {
-  //     driver: 'Титевук Константин',
-  //     start: {lat: 53.8663053, lng: 27.5494088},
-  //     finish: {lat: 53.8393437, lng: 27.5009965}
-  //   }];
 
   driversInformation: Driver[] = [
     {
@@ -47,6 +25,7 @@ export class BoardComponent implements OnInit {
       start: {lat: 53.91900254, lng: 27.56883707},
       finish: {lat: 53.89554162, lng: 27.50017252},
       carName: 'BMW F10,2017',
+      everydayTrip: true,
       aboutDriver: '  Еду быстро и надежно, каждое утро на Уручье.Оплату принимаю печенками :)',
       phoneNumber: '+375-29-292-24-02',
       reviews: [{
@@ -78,6 +57,7 @@ export class BoardComponent implements OnInit {
       start: {lat: 53.9052831, lng: 27.5391841},
       finish: {lat: 53.9039455, lng: 27.5524449},
       carName: 'Audi A8,2017',
+      everydayTrip: false,
       aboutDriver: '  Еду быстро и надежно, каждое утро на Уручье.Оплату принимаю печенками :)',
       phoneNumber: '+375-29-292-24-02',
       reviews: [{
@@ -109,6 +89,7 @@ export class BoardComponent implements OnInit {
       start: {lat: 53.9412651, lng: 27.6880516},
       finish: {lat: 53.8663053, lng: 27.4937871},
       carName: 'Siat Tiago,2011',
+      everydayTrip: false,
       aboutDriver: '  Еду быстро и надежно, каждое утро на Уручье.Оплату принимаю печенками :)',
       phoneNumber: '+375-29-292-24-02',
       reviews: [{
@@ -140,6 +121,7 @@ export class BoardComponent implements OnInit {
       start: {lat: 53.8663053, lng: 27.5494088},
       finish: {lat: 53.8393437, lng: 27.5009965},
       carName: 'Volvo S70,2014',
+      everydayTrip: true,
       aboutDriver: '  Еду быстро и надежно, каждое утро на Уручье.Оплату принимаю печенками :)',
       phoneNumber: '+375-29-292-24-02',
       reviews: [{
@@ -185,6 +167,7 @@ export class Driver {
   dateTrip: string;
   timeTrip: string;
   carName: string;
+  everydayTrip: boolean;
   aboutDriver: string;
   phoneNumber: string;
   start: object;

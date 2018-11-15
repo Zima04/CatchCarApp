@@ -54,7 +54,7 @@
             <div class="benifits">
               <i class="fa fa-car" aria-hidden="true" matTooltip="{{driver.carName}}"></i>
               <i class="fa fa-clock-o" aria-hidden="true" matTooltip="{{driver.dateTrip}} {{driver.timeTrip}}"></i>
-              <i class="fa fa-calendar-check-o" aria-hidden="true" matTooltip="Водитель ездит каждый день"></i>
+              <i class="fa fa-calendar-check-o" aria-hidden="true" matTooltip="Водитель ездит каждый день" *ngIf="driver.everydayTrip"></i>
             </div>
           </div>
         </div>

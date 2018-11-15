@@ -1,4 +1,34 @@
-.footer-container{
+.footer-container {
   min-height: 70px;
   background-color: #00695c;
+  justify-content: center;
+  display: flex;
+  color: #ffffff;
+  line-height: 24px;
+
+  .wrap {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+
+    .links {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .icons {
+      display: flex;
+
+      i {
+        padding-left: 10px;
+        max-height: 10px;
+      }
+    }
+
+    .contacts {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }

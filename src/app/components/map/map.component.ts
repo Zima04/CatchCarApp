@@ -47,7 +47,7 @@ export class MapComponent implements OnInit {
       this.driverOrigin = destination.start;
       this.driverDestination = destination.finish;
     });
-    this.zoom = 8;
+    this.zoom = 30;
     this.latitude = 53.9045398;
     this.longitude = 27.5615244;
     this.latitudeStart = 0;
@@ -123,5 +123,4 @@ export class MapComponent implements OnInit {
   public deg2rad(deg) {
     return deg * (Math.PI / 180);
   }
-  
 }
