@@ -1,0 +1,24 @@
+{
+  "Title": "Exemple de traduction",
+  "Intro": "Bonjour je m'appelle Arthur, j'ai 42 ans.",
+  "Settings for trip": "Настройте параметры поездки:",
+  "Selected driver": "Выбранный водитель:",
+  "Create trip": "Создать поездку",
+  "Map header": "Карта вашего и предложенного маршрута:",
+  "Empty map": "Заполните параметры вашей поездки для поиска водителей",
+  "Confirm driver": "Подтвердить поездку",
+  "Hide driver": "Больше не показывать",
+  "Reviews": "Отзывы пассажиров :",
+  "Main Page": "Главная",
+  "Travel history": "История поездок",
+  "Settings": "Настройки",
+  "Exit":"Выход",
+  "Cancel":"Отмена",
+  "Confirm":"Подтвердить",
+  "Select day":"Выберите день",
+  "Select time":"Выберите время",
+  "Select start point":"Начальная точка",
+  "Select finish point":"Конечная точка",
+  "Select the best trip":"Выберите наиболее подходящий маршрут :"
+}
+

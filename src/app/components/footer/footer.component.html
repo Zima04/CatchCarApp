@@ -2,7 +2,7 @@
   <div class="wrap">
     <div class="links">
       <div class="link" *ngFor="let link of links">
-        <span>{{link}}</span>
+        <a href="{{link}}">{{link.substring(8)}}</a>
       </div>
     </div>
     <div class="icons">

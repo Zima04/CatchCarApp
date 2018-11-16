@@ -3,7 +3,7 @@
 import {Component, Input, ViewChild, NgZone, OnInit, ElementRef} from '@angular/core';
 import {MapsAPILoader, AgmMap} from '@agm/core';
 import {FormControl} from '@angular/forms';
-import {MapServiceService} from '../../services/map-service.service';
+import {MapService} from '../../services/map-service.service';
 import {Subscription} from 'rxjs';
 
 
@@ -38,7 +38,7 @@ export class MapComponent implements OnInit {
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    private mapService: MapServiceService,
+    private mapService: MapService,
   ) {
   }
 
@@ -90,7 +90,7 @@ export class MapComponent implements OnInit {
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.zoom = 12;
-          console.log(this.getDistanceFromLatLonInKm(this.latitudeFinish, this.longitudeFinish, this.driverDestination.lat, this.driverDestination.lng));
+          // console.log(this.getDistanceFromLatLonInKm(this.latitudeFinish, this.longitudeFinish, this.driverDestination.lat, this.driverDestination.lng));
         });
       });
     });

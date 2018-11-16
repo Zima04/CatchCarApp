@@ -22,9 +22,9 @@ export class RegistrtionPageComponent implements OnInit, AfterViewInit {
     console.log(localStorage.getItem('position'));
     this.position = localStorage.getItem('position');
     this.loginForm = this.fb.group({
-      phone: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      confirm_password: ['', [Validators.required]],
+      phone: ['', [Validators.required, Validators.maxLength(9), Validators.minLength(9)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirm_password: ['', [Validators.required, Validators.minLength(6)]],
     });
 
   }

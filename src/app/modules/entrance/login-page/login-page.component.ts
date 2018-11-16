@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
@@ -12,6 +12,9 @@ export class LoginPageComponent implements OnInit, AfterViewInit {
 
   position: string;
 
+  @ViewChild('checkbox')
+  checkbox: ElementRef;
+
   constructor(private fb: FormBuilder, private router: Router) {
 
   }
@@ -22,8 +25,8 @@ export class LoginPageComponent implements OnInit, AfterViewInit {
     console.log(localStorage.getItem('position'));
     this.position = localStorage.getItem('position');
     this.loginForm = this.fb.group({
-      phone: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      phone: [localStorage.getItem('phone') || '', [Validators.required, Validators.maxLength(9), Validators.minLength(9)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
 
   }
@@ -36,6 +39,9 @@ export class LoginPageComponent implements OnInit, AfterViewInit {
   }
 
   login() {
+    if (this.checkbox.nativeElement.value === 'on') {
+      localStorage.setItem('phone', this.loginForm.value.phone);
+    }
     console.log(this.loginForm.value);
     console.log(this.position);
     switch (this.position) {

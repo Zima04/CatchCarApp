@@ -1,4 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {MapService} from '../../services/map-service.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'header-app',
@@ -9,7 +11,8 @@ export class HeaderComponent implements OnInit {
 
   @Output() burgerState = new EventEmitter();
 
-  constructor() {
+  constructor( private translate: TranslateService) {
+    translate.setDefaultLang('en');
   }
 
   ngOnInit() {
@@ -17,6 +20,10 @@ export class HeaderComponent implements OnInit {
 
   onClickBurger(event) {
     this.burgerState.emit(event);
+  }
+
+  switchLanguage(language: string) {
+    this.translate.use(language);
   }
 
 }

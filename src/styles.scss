@@ -5,8 +5,39 @@
 $fa-font-path: "../node_modules/font-awesome/fonts";
 @import '~font-awesome/scss/font-awesome.scss';
 
-body{
+body {
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
+
+  /deep/ .pi-star {
+    color: #eebc7c !important;
+  }
+
+  /deep/ .timepicker__header, /deep/ .timepicker__actions {
+    background-color: #00695c !important;
+  }
+
+  /deep/ .clock-face__number > span.active {
+    background-color: #eebc7c !important;
+  }
+
+  /deep/.alert{
+    top: 14px;
+    right: 0;
+    position: fixed;
+    z-index: 0999;
+  }
+
+  .form-control{
+    height: auto!important;
+  }
+
+  .form-control:focus {
+    outline: 0;
+    box-shadow:none;
+  }
+
 }
+
+

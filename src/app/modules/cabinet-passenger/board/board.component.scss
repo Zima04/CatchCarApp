@@ -1,21 +1,40 @@
-.container {
+.board-container {
   display: flex;
-  padding: 25px;
   flex-direction: column;
+  padding: 25px;
 
   .functional-block {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
     background-color: #ffffff;
-    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
     border-radius: 4px;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
     color: #111111;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
 
     mat-form-field {
       padding: 15px 10px 3px;
+      width: 300px;
+    }
+
+    .button-confirm {
+      background-color: #eebc7c;
+      border: 1px solid #00695c;
+      border-radius: 9px/8px;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      height: 47px;
+      line-height: 47px;
+      margin: 5px;
+      outline: 0;
+      padding: 0 10px;
+      text-decoration: none;
+      text-transform: uppercase;
     }
 
     .clock-container {
@@ -23,28 +42,20 @@
       padding: 15px 10px 14px;
 
       .clock {
-        padding: 0.56em 0;
+        border: none;
+        border-bottom: 1px solid #73797a;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
         font-size: inherit;
         font-weight: 400;
         line-height: 1.125;
-        font-family: Roboto, "Helvetica Neue", sans-serif;
-        border: none;
-        border-bottom: 1px solid #c2c2c2;
-        color: #c2c2c2;
+        opacity: 0.8;
+        padding: 0.56em 0;
       }
 
       .clock-icon {
         display: flex !important;
         position: relative !important;
         right: 20px !important;
-      }
-
-      /deep/ .timepicker__header, /deep/ .timepicker__actions {
-        background-color: #00695c !important;
-      }
-
-      /deep/ .clock-face__number > span.active {
-        background-color: #eebc7c !important;
       }
 
       /deep/ .timepicker-button {
@@ -54,39 +65,39 @@
   }
 
   .map-info {
-    display: flex;
-    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
     border-radius: 20px 0 0 20px;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    display: flex;
 
     .map-container {
       flex: 2;
     }
 
     .list-drivers {
-      flex: 1;
       background-color: #ffffff;
       border-radius: 0 6px 6px 0;
+      flex: 1;
 
       .header-list-drivers {
-        text-align: center;
-        line-height: 40px;
-        color: #111111;
-        border-top-right-radius: 6px;
         background-color: #e8ebf0;
+        border-top-right-radius: 6px;
+        color: #111111;
+        line-height: 40px;
+        text-align: center;
       }
 
-      .selectDriver{
+      .selectDriver {
         background-color: #6f9d74;
-        color: #ffffff!important;
-        cursor: pointer;
         border-radius: 6px;
+        color: #ffffff !important;
+        cursor: pointer;
       }
 
       .item-driver {
-        display: flex;
-        padding: 8px;
         color: #111111;
+        display: flex;
         min-width: 300px;
+        padding: 8px;
 
         span {
           padding-left: 4px;
@@ -103,11 +114,25 @@
 
         &:hover {
           background-color: #6f9d74;
+          border-radius: 6px;
           color: #ffffff;
           cursor: pointer;
-          border-radius: 6px;
         }
       }
+
+    }
+
+    .none-driver {
+      align-items: center;
+      background-color: #4c8c4a;
+      color: #ffffff;
+      display: flex;
+      flex: 1;
+      font-size: 26px;
+      justify-content: center;
+      padding: 10px;
+      text-align: center;
+      word-wrap: break-word;
     }
   }
 
@@ -115,22 +140,15 @@
     display: flex;
     justify-content: space-between;
 
-    .driver-card {
-      //max-height: 200px;
-
-    }
-
     .card-header-image {
       background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
       background-size: cover;
     }
 
     .container-card {
-      width: 49%;
       background-color: #4c8c4a;
       color: #ffffff;
-      //max-height: 300px;
-      //overflow-y: scroll;
+      width: 49%;
       .reviews-item {
         margin: 15px 0;
       }
@@ -150,15 +168,16 @@
 }
 
 @media only screen and (max-width: 850px) {
-  .map-info,.driver-information-block {
+  .map-info, .driver-information-block {
     flex-direction: column;
 
-    .container-card{
-      width: 100%!important;
+    .container-card {
+      width: 100% !important;
       margin-bottom: 20px;
     }
   }
 }
+
 
 
 

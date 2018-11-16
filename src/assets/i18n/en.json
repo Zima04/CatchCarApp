@@ -1,0 +1,23 @@
+{
+  "Title": "Exemple de traduction",
+  "Intro": "Bonjour je m'appelle Arthur, j'ai 42 ans.",
+  "Settings for trip": "Configure the parameters of the trip:",
+  "Selected driver": "Selected driver:",
+  "Create trip": "Create a trip",
+  "Map header": "Map of your and proposed route:",
+  "Empty map": "Fill in the parameters of your trip to search for drivers",
+  "Confirm driver": "Confirm the trip",
+  "Hide driver": "Do not show again",
+  "Reviews": "Passenger reviews:",
+  "Main Page": "Main page",
+  "Travel history": "Travel history",
+  "Settings": "Settings",
+  "Exit":"Exit",
+  "Cancel":"Cancel",
+  "Confirm":"Confirm",
+  "Select day":"Select day",
+  "Select time":"Select time",
+  "Select start point":"Start point",
+  "Select finish point":"Finish point",
+  "Select the best trip":"Choose the most appropriate route:"
+}

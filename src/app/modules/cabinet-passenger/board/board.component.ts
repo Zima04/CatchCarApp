@@ -1,5 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {MapServiceService} from '../../../services/map-service.service';
+import {MapService} from '../../../services/map-service.service';
+import {MatDatepickerInputEvent} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-board',
@@ -14,9 +16,11 @@ export class BoardComponent implements OnInit {
   @ViewChild('searchFinish')
   public searchFinishPositionElementRef: ElementRef;
 
+  dateTrip: Date = new Date();
+  timeTrip: string;
   selectDriverInfo: Driver;
   numberDriver: number;
-
+  alert = {};
   driversInformation: Driver[] = [
     {
       name: 'Александров Петр',
@@ -148,17 +152,54 @@ export class BoardComponent implements OnInit {
     },
   ];
 
-  constructor(private mapService: MapServiceService) {
+  constructor(private mapService: MapService) {
   }
 
+
+
   ngOnInit() {
-    this.changeWay(0);
+    // this.changeWay(0);
   }
+
 
   changeWay(driverNumber) {
     this.selectDriverInfo = this.driversInformation[driverNumber];
     this.numberDriver = driverNumber;
     this.mapService.updateMap({start: this.driversInformation[driverNumber].start, finish: this.driversInformation[driverNumber].finish});
+  }
+
+  changeTime(event: string) {
+    this.timeTrip = event;
+  }
+
+  changeDate(event: MatDatepickerInputEvent<Date>) {
+    this.dateTrip = event.value;
+  }
+
+  createTrip() {
+    this.changeWay(0);
+    const sendToServerTripInfo = {
+      startPoint: this.searchStartPositionElementRef.nativeElement.value,
+      endPoint: this.searchFinishPositionElementRef.nativeElement.value,
+      time: this.timeTrip,
+      date: this.dateTrip,
+    };
+    console.log(sendToServerTripInfo);
+  }
+
+  confirmTrip() {
+    this.alert = {
+      type: 'success',
+      msg: `Вы добавили заявку на поездку (добавлено: ${new Date().toLocaleTimeString()})`,
+      timeout: 5000
+    };
+    const sendToServerTripInfo = {
+      startPoint: this.searchStartPositionElementRef.nativeElement.value,
+      endPoint: this.searchFinishPositionElementRef.nativeElement.value,
+      time: this.timeTrip,
+      date: this.dateTrip,
+    };
+    console.log(sendToServerTripInfo);
   }
 }
 

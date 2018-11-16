@@ -1,7 +1,7 @@
-.passenger-container {
-  background-color: #e8ebf0;
+.driver-container {
   display: flex;
   flex-direction: column;
+  background-color: #e8ebf0;
 }
 
 .sidenav-content {
@@ -19,12 +19,12 @@
     }
 
     .item {
-      align-items: center;
-      cursor: pointer;
       display: flex;
+      align-items: center;
       line-height: 40px;
-      outline:none;
+      cursor: pointer;
       padding: 5px 20px;
+      outline:none;
 
       span {
         padding-left: 10px;
@@ -35,10 +35,10 @@
       }
 
       &:last-child {
-        background-color: #4c8c4a;
-        border-bottom: #00695c 1px solid;
-        border-top: #00695c 1px solid;
         color: #ffffff;
+        border-top: #00695c 1px solid;
+        border-bottom: #00695c 1px solid;
+        background-color: #4c8c4a;
       }
     }
   }

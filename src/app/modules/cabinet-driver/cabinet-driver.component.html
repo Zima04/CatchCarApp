@@ -1,16 +1,16 @@
 <header-app (burgerState)="drawer.toggle()"></header-app>
-<mat-drawer-container class="passenger-container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side">
+<mat-drawer-container class="driver-container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side" >
     <div class="menu">
       <div class="item" routerLink="{{link.url}}" *ngFor="let link of links;let i = index"
            [ngClass]="{selectLink: i == selectLink}"
            (click)="selectLink = i">
         <i class="{{link.icon}}" aria-hidden="true"></i>
-        <span>{{link.name | translate}}</span>
+        <span>{{link.name}}</span>
       </div>
       <div class="item" (click)="exit()">
         <i class="fa fa-sign-out" aria-hidden="true"></i>
-        <span>{{'Exit'|translate}}</span>
+        <span>Выход</span>
       </div>
     </div>
   </mat-drawer>

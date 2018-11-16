@@ -1,42 +1,69 @@
-.header{
+.header {
   background-color: #4c8c4a;
-  height: 70px;
-  display: flex;
-  justify-content: space-between;
   color: #ffffff;
+  display: flex;
+  height: 70px;
+  justify-content: space-between;
 
-  .logo-block{
-    display: flex;
-    justify-content: center;
+  .logo-block {
     align-items: center;
     cursor: pointer;
-    padding: 0 25px;
+    display: flex;
     font-size: 24px;
+    justify-content: center;
+    padding: 0 25px;
 
     .logo-image {
       background: url(/assets/logos/main-logo.png);
-      width: 160px;
       height: 36px;
       margin-left: 20px;
+      width: 160px;
     }
   }
 
-  .person-info{
+  .flags {
+    display: flex;
+    flex-direction: row;
+    margin-right: 100px;
+
+    .russian {
+      background: url(https://lipis.github.io/flag-icon-css/flags/4x3/ru.svg);
+      cursor: pointer;
+      height: 15px;
+      margin-right: 10px;
+      width: 20px;
+    }
+    .english {
+      background: url(https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg);
+      cursor: pointer;
+      height: 16px;
+      width: 22px;
+    }
+  }
+
+  .person-info {
+    align-items: center;
     display: flex;
     justify-content: center;
-    align-items: center;
     padding: 0 25px;
 
-    .person-image{
+    .person-image {
       background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
       background-size: cover;
-      width: 60px;
-      height: 60px;
       border-radius: 100%;
+      height: 60px;
+      width: 60px;
     }
 
-    .person-name{
-        padding-left: 10px;
+    .person-name {
+      padding-left: 10px;
     }
   }
 }
+
+@media only screen and (max-width: 850px) {
+  .logo-image {
+    display: none;
+  }
+}
+

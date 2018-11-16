@@ -1,34 +1,34 @@
 <div class="inner" id="inner">
-  <div class="container form-container">
+  <div class="form-container">
     <div class="form-header">
       Настройка персональных данных
     </div>
     <form [formGroup]="editForm" class="login-form">
-      <div class="form-row">
+      <div class="form-row-custom">
         <div class="form-row-text">
           Имя:
         </div>
         <input class="form-input" formControlName="name" type="text">
       </div>
-      <div class="form-row">
+      <div class="form-row-custom">
         <div class="form-row-text">
           Телефон:
         </div>
         <input mask="00-000-00-00" prefix="+(375)" [showMaskTyped]="true" class="form-input" formControlName="phone">
       </div>
-      <div class="form-row">
+      <div class="form-row-custom">
         <div class="form-row-text">
           Старый пароль:
         </div>
         <input class="form-input" type="password" formControlName="password">
       </div>
-      <div class="form-row">
+      <div class="form-row-custom">
         <div class="form-row-text">
           Новый пароль:
         </div>
         <input class="form-input" type="password" formControlName="password">
       </div>
-      <div class="form-row">
+      <div class="form-row-custom">
         <div class="form-row-text">
           Добавить новое фото:
         </div>
@@ -38,8 +38,8 @@
       </div>
       <div class="form-footer">
         <input type="submit" class="submit-button" value="Сохранить"
-               [ngClass]="{'disable':editForm.invalid && editForm.touched && editForm.dirty || editForm.untouched}"
-               [disabled]="editForm.invalid && editForm.touched && editForm.dirty || editForm.untouched">
+               [ngClass]="{'disable':editForm.invalid && editForm.dirty || editForm.pristine}"
+               [disabled]="editForm.invalid && editForm.dirty || editForm.pristine">
       </div>
     </form>
   </div>

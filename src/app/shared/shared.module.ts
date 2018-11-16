@@ -23,6 +23,8 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import {ImageUploaderModule} from 'ngx-image-uploader';
 import {AgmDirectionModule} from 'agm-direction';
+import {AlertModule} from 'ngx-bootstrap';
+import {TranslateModule} from '@ngx-translate/core';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -61,6 +63,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatTooltipModule,
     ImageUploaderModule,
     AgmDirectionModule,
+    AlertModule.forRoot(),
+    TranslateModule
   ],
   exports: [
     MatCardModule,
@@ -90,6 +94,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatTooltipModule,
     ImageUploaderModule,
     AgmDirectionModule,
+    AlertModule,
+    TranslateModule
   ],
   providers: [
     {

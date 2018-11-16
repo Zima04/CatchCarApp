@@ -7,10 +7,17 @@ import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   imports: [
     SharedModule,
@@ -20,6 +27,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
       {apiKey: 'AIzaSyCRDgLLTpapsu3Xn6sQXcWz_Bh4Da9bNeY', libraries: ['places', 'geometry']}
     ), // <---
     NgbModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]

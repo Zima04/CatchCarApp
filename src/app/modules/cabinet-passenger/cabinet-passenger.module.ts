@@ -6,7 +6,7 @@ import {BoardComponent} from './board/board.component';
 import {CabinetPassengerRoutingModule} from './cabinet-passenger-routing.module';
 import {SharedModule} from '../../shared/shared.module';
 import {CabinetPassengerComponent} from './cabinet-passenger.component';
-import {MapServiceService} from '../../services/map-service.service';
+import {MapService} from '../../services/map-service.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import {MapServiceService} from '../../services/map-service.service';
     CabinetPassengerRoutingModule,
     SharedModule,
   ],
-  providers: [MapServiceService],
+  providers: [MapService],
 })
 export class CabinetPassengerModule {
 }

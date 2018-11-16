@@ -27,8 +27,8 @@ export class SettingsComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.editForm = this.fb.group({
       name: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      phone: ['', [Validators.required, Validators.maxLength(9), Validators.minLength(9)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 

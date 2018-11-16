@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'entrace-page',
@@ -6,8 +7,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./entrance-page.component.scss']
 })
 export class EntrancePageComponent implements OnInit {
-
-  constructor() { }
 
   ngOnInit() {
   }
