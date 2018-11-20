@@ -4,7 +4,7 @@
 .header {
   color: #ffffff;
   display: flex;
-  height: 70px;
+  height: 105px;
   justify-content: space-between;
 
   .logo-block {
@@ -16,10 +16,10 @@
     padding: 0 25px;
 
     .logo-image {
-      background: url(/assets/logos/main-logo.png);
-      height: 36px;
+      //background: url(/assets/logos/main-logo.png) no-repeat;
+      //height: 90px;
       margin-left: 20px;
-      width: 160px;
+      //width: 270px;
     }
   }
 

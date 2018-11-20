@@ -1,7 +1,7 @@
 :host-context(.light-theme) .container-card {
-    background-color: #424242;
-    color: #ffffff;
-  }
+  background-color: #424242;
+  color: #ffffff;
+}
 
 :host-context(.light-theme) .card-cont {
   background-color: #424242;
@@ -35,10 +35,9 @@
   .list-drivers {
     background-color: #ffffff;
 
-
     .selectDriver {
       background-color: #6d6d6d;
-      color: #eebc7c!important;
+      color: #eebc7c !important;
     }
 
     .item-driver {
@@ -53,5 +52,10 @@
       }
     }
   }
+}
+
+:host-context(.light-theme) .submit-button {
+  background-color: #eebc7c;
+  border: 1px solid  #424242;
 }
 

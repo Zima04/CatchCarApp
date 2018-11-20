@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'cabinet-driver',
@@ -11,23 +12,21 @@ export class CabinetDriverComponent implements OnInit {
   selectLink = 0;
   links = [
     {
-      name: 'Главная',
+      name: 'Main Page',
       icon: 'fa fa-list-alt',
       url: 'board',
     },
     {
-      name: 'История поездок',
+      name: 'Travel history',
       icon: 'fa fa-road',
-      url: 'history',
-    },
-    {
-      name: 'Настройки',
-      icon: 'fa fa-cog',
-      url: 'settings',
+      url: 'driver-history',
     },
   ];
 
+  theme: string;
+
   constructor(private router: Router) {
+    this.theme = environment.theme;
   }
 
   ngOnInit() {

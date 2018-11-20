@@ -1,31 +1,44 @@
 <div class="driver-container">
   <mat-card class="card-cont">
     <mat-card-header>
-      <mat-card-title>Параметры новой поездки :</mat-card-title>
+      <mat-card-title>
+        {{'Settings for trip' | translate}}
+      </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="functional-block">
+
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Конечная точка" autocorrect="off" autocapitalize="off" spellcheck="off"
+          <input matInput placeholder="{{'Select start point' | translate}}" autocorrect="off" autocapitalize="off"
+                 spellcheck="off"
                  type="text"
                  class="form-control" #searchStart>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Конечная точка" autocorrect="off" autocapitalize="off" spellcheck="off"
+          <input matInput placeholder="{{'Select finish point' | translate}}" autocorrect="off" autocapitalize="off"
+                 spellcheck="off"
                  type="text"
                  class="form-control" #searchFinish>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput [matDatepicker]="da" placeholder="Выберите день">
+          <input matInput [matDatepicker]="da" placeholder="{{'Select day' | translate}}"
+                 (dateInput)="changeDate($event)"
+                 (dateChange)="changeDate($event)"
+                 readonly>
           <mat-datepicker-toggle matSuffix [for]="da"></mat-datepicker-toggle>
           <mat-datepicker #da></mat-datepicker>
         </mat-form-field>
 
         <div class="clock-container">
-          <input class="clock" placeholder="Выберите время" [ngxTimepicker]="fullTime" [format]="24" readonly>
-          <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+          <input class="clock" placeholder="{{'Select time' | translate}}" [ngxTimepicker]="fullTime" [format]="24"
+                 readonly>
+          <ngx-material-timepicker #fullTime
+                                   (timeSet)="changeTime($event)"
+                                   [cancelBtnTmpl]="cancelBtn"
+                                   [confirmBtnTmpl]="confirmBtn"
+          ></ngx-material-timepicker>
           <ngx-material-timepicker-toggle [for]="fullTime" class="clock-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="16px" height="16px"
                  ngxMaterialTimepickerToggleIcon>
@@ -33,15 +46,27 @@
                 d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M16,16H7.995 C7.445,16,7,15.555,7,15.005v-0.011C7,14.445,7.445,14,7.995,14H14V5.995C14,5.445,14.445,5,14.995,5h0.011 C15.555,5,16,5.445,16,5.995V16z"/>
             </svg>
           </ngx-material-timepicker-toggle>
+
+          <ng-template #cancelBtn>
+            <button class="button-confirm">{{'Cancel' | translate}}</button>
+          </ng-template>
+          <ng-template #confirmBtn>
+            <button class="button-confirm">{{'Confirm' | translate}}</button>
+          </ng-template>
         </div>
-        <button class="button-confirm">Создать поездку</button>
+
+        <button class="button-confirm" (click)="createTrip()">
+          {{'Create trip' | translate}}
+        </button>
 
       </div>
     </mat-card-content>
   </mat-card>
   <mat-card class="card-cont-dark">
     <mat-card-header>
-      <mat-card-title>Ваш маршрут :</mat-card-title>
+      <mat-card-title>
+        {{ 'Map header' | translate }}
+      </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="map-info">
@@ -55,7 +80,7 @@
   <div class="driver-information-block">
     <mat-card class="container-card">
       <mat-card-header>
-        <mat-card-title>Личная информация:</mat-card-title>
+        <mat-card-title>{{'Settings personal data' | translate}}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <div class="inner" id="inner">
@@ -63,39 +88,39 @@
             <form [formGroup]="editForm" class="login-form">
               <div class="form-row-custom">
                 <div class="form-row-text">
-                  Имя:
+                  {{'Name' | translate}}
                 </div>
                 <input class="form-input" formControlName="name" type="text">
               </div>
               <div class="form-row-custom">
                 <div class="form-row-text">
-                  Телефон:
+                  {{'Phone' | translate}}
                 </div>
                 <input mask="00-000-00-00" prefix="+(375)" [showMaskTyped]="true" class="form-input"
                        formControlName="phone">
               </div>
               <div class="form-row-custom">
                 <div class="form-row-text">
-                  Информация о машине:
+                  {{'Car' | translate}}
                 </div>
                 <input type="text" class="form-input" formControlName="car">
               </div>
               <div class="form-row-custom">
                 <div class="form-row-text">
-                  О себе:
+                  {{'About me' | translate}}
                 </div>
                 <textarea class="form-textarea" rows="8" formControlName="description"></textarea>
               </div>
               <div class="form-row-custom">
                 <div class="form-row-text">
-                  Добавить новое фото:
+                  {{'Add new photo' | translate}}
                 </div>
                 <div class="image-upload-container">
                   <ngx-image-uploader [options]="options"></ngx-image-uploader>
                 </div>
               </div>
               <div class="form-footer">
-                <input type="submit" class="submit-button" value="Сохранить"
+                <input type="submit" class="submit-button" value="{{'Save' | translate}}"
                        [ngClass]="{'disable':editForm.invalid && editForm.dirty || editForm.pristine}"
                        [disabled]="editForm.invalid && editForm.dirty || editForm.pristine">
               </div>
@@ -107,10 +132,10 @@
     </mat-card>
     <mat-card class="container-card">
       <mat-card-header>
-        <mat-card-title>Отзывы пассажиров для вас:</mat-card-title>
+        <mat-card-title>{{ 'Reviews' | translate }}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <mat-card class="reviews-item" *ngFor="let review of selectDriverInfo.reviews">
+        <mat-card class="reviews-item" *ngFor="let review of this.driversInformation[0].reviews">
           <mat-card-header>
             <div mat-card-avatar class="card-header-image"></div>
             <mat-card-title>{{review.author}}</mat-card-title>

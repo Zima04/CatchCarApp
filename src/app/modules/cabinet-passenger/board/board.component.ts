@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MapService} from '../../../services/map-service.service';
 import {MatDatepickerInputEvent} from '@angular/material';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
+import {AlertComponent} from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-board',
@@ -20,7 +21,7 @@ export class BoardComponent implements OnInit {
   timeTrip: string;
   selectDriverInfo: Driver;
   numberDriver: number;
-  alert: Alert = new Alert();
+  alerts: any[] = [];
   driversInformation: Driver[] = [
     {
       name: 'Александров Петр',
@@ -161,7 +162,6 @@ export class BoardComponent implements OnInit {
   ];
 
   constructor(private mapService: MapService, private translate: TranslateService) {
-    console.log(translate.currentLang);
     this.driversInformation.forEach(driver => {
       if (translate.currentLang === 'ru' || !translate.currentLang) driver.name = driver.ru_name;
       else driver.name = driver.en_name;
@@ -207,11 +207,11 @@ export class BoardComponent implements OnInit {
   }
 
   confirmTrip() {
-    this.alert = {
+    this.alerts.push({
       type: 'success',
       msg: `Вы добавили заявку на поездку (добавлено: ${new Date().toLocaleTimeString()})`,
       timeout: 5000
-    };
+    });
     const sendToServerTripInfo = {
       startPoint: this.searchStartPositionElementRef.nativeElement.value,
       endPoint: this.searchFinishPositionElementRef.nativeElement.value,
@@ -219,6 +219,18 @@ export class BoardComponent implements OnInit {
       date: this.dateTrip,
     };
     console.log(sendToServerTripInfo);
+  }
+
+  deleteDriver() {
+    this.alerts.push({
+      type: 'danger',
+      msg: `Данный водитель больше не будет показываться (добавлено: ${new Date().toLocaleTimeString()})`,
+      timeout: 5000
+    });
+  }
+
+  onClosed(dismissedAlert: AlertComponent): void {
+    this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
   }
 }
 
@@ -241,10 +253,4 @@ export class Review {
   author: string;
   stars: number;
   description: string;
-}
-
-export class Alert {
-  type: string;
-  msg: string;
-  timeout: number;
 }
