@@ -1,7 +1,10 @@
 # CatchCarApp
 
 This project is working on Angular 7.
-Idea of this project - application integrate with google map to get the best ways for you trips and give you drivers,that on the way with you.You can assine this driver on you and ride with him, where you need and your driver need.
+
+Idea of this project - application integrate with google map to get the best ways for you trips and give you drivers,
+that on the way with you.You can assine this driver on you and ride with him, where you need and your driver need.
+
 Angular cli can build two configurations:
 1)production
 2)another
