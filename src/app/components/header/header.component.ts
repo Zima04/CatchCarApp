@@ -11,19 +11,20 @@ export class HeaderComponent implements OnInit {
   @Output() burgerState = new EventEmitter();
 
   selectLang: string = 'ru';
-  personName: string = 'Виктор Грачев';
-  theme: string;
+  personName: string;
+  ru_name: string = 'Виктор Грачев';
+  en_name: string = 'Victor Grachev';
 
   constructor(private translate: TranslateService) {
-    this.theme = 'light';
-    console.log(this.translate.currentLang);
     if (this.translate.currentLang === 'ru' || !this.translate.currentLang) {
       this.selectLang = 'ru';
+      this.personName = this.ru_name;
       this.translate.use('ru');
     }
     else {
       this.selectLang = 'en';
       this.translate.use('en');
+      this.personName = this.en_name;
     }
   }
 
@@ -37,6 +38,10 @@ export class HeaderComponent implements OnInit {
   switchLanguage(language: string) {
     this.selectLang = language;
     this.translate.use(language);
+    if (language === 'ru')
+      this.personName = this.ru_name;
+    else
+      this.personName = this.en_name;
   }
 
 }

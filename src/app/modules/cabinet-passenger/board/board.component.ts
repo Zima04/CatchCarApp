@@ -37,21 +37,29 @@ export class BoardComponent implements OnInit {
       phoneNumber: '+375-29-292-24-02',
       reviews: [{
         author: 'Анна Коренина',
+        ru_author: 'Анна Коренина',
+        en_author: 'Anna Korenina',
         stars: 4,
         description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
       },
         {
           author: 'Мария Акакиевич',
+          ru_author: 'Мария Акакиевич',
+          en_author: 'Maria Akakievich',
           stars: 2,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
         {
           author: 'Ольга Петрова',
+          ru_author: 'Ольга Петрова',
+          en_author: 'Olga Petrova',
           stars: 5,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
         {
           author: 'Петр Вальштейн',
+          ru_author: 'Петр Вальштейн',
+          en_author: 'Petr Valshtein',
           stars: 2,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
@@ -71,21 +79,29 @@ export class BoardComponent implements OnInit {
       phoneNumber: '+375-29-292-24-02',
       reviews: [{
         author: 'Анна Коренина',
+        ru_author: 'Анна Коренина',
+        en_author: 'Anna Korenina',
         stars: 4,
         description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
       },
         {
           author: 'Мария Акакиевич',
+          ru_author: 'Мария Акакиевич',
+          en_author: 'Maria Akakievich',
           stars: 2,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
         {
           author: 'Ольга Петрова',
+          ru_author: 'Ольга Петрова',
+          en_author: 'Olga Petrova',
           stars: 5,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
         {
           author: 'Петр Вальштейн',
+          ru_author: 'Петр Вальштейн',
+          en_author: 'Petr Valshtein',
           stars: 2,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
@@ -105,21 +121,29 @@ export class BoardComponent implements OnInit {
       phoneNumber: '+375-29-292-24-02',
       reviews: [{
         author: 'Анна Коренина',
+        ru_author: 'Анна Коренина',
+        en_author: 'Anna Korenina',
         stars: 4,
         description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
       },
         {
           author: 'Мария Акакиевич',
+          ru_author: 'Мария Акакиевич',
+          en_author: 'Maria Akakievich',
           stars: 2,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
         {
           author: 'Ольга Петрова',
+          ru_author: 'Ольга Петрова',
+          en_author: 'Olga Petrova',
           stars: 5,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
         {
           author: 'Петр Вальштейн',
+          ru_author: 'Петр Вальштейн',
+          en_author: 'Petr Valshtein',
           stars: 2,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
@@ -139,21 +163,29 @@ export class BoardComponent implements OnInit {
       phoneNumber: '+375-29-292-24-02',
       reviews: [{
         author: 'Анна Коренина',
+        ru_author: 'Анна Коренина',
+        en_author: 'Anna Korenina',
         stars: 4,
         description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
       },
         {
           author: 'Мария Акакиевич',
+          ru_author: 'Мария Акакиевич',
+          en_author: 'Maria Akakievich',
           stars: 2,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
         {
           author: 'Ольга Петрова',
+          ru_author: 'Ольга Петрова',
+          en_author: 'Olga Petrova',
           stars: 5,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
         {
           author: 'Петр Вальштейн',
+          ru_author: 'Петр Вальштейн',
+          en_author: 'Petr Valshtein',
           stars: 2,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
@@ -163,8 +195,17 @@ export class BoardComponent implements OnInit {
 
   constructor(private mapService: MapService, private translate: TranslateService) {
     this.driversInformation.forEach(driver => {
-      if (translate.currentLang === 'ru' || !translate.currentLang) driver.name = driver.ru_name;
-      else driver.name = driver.en_name;
+      if (translate.currentLang === 'ru' || !translate.currentLang) {
+        driver.name = driver.ru_name;
+        driver.reviews.forEach(review => {
+          review.author = review.ru_author;
+        });
+      } else {
+        driver.name = driver.en_name;
+        driver.reviews.forEach(review => {
+          review.author = review.en_author;
+        });
+      }
     });
   }
 
@@ -174,8 +215,17 @@ export class BoardComponent implements OnInit {
     this.translate.onLangChange
       .subscribe((event: LangChangeEvent) => {
         this.driversInformation.forEach(driver => {
-          if (event.lang === 'ru') driver.name = driver.ru_name;
-          else driver.name = driver.en_name;
+          if (event.lang === 'ru') {
+            driver.name = driver.ru_name;
+            driver.reviews.forEach(review => {
+              review.author = review.ru_author;
+            });
+          } else {
+            driver.name = driver.en_name;
+            driver.reviews.forEach(review => {
+              review.author = review.en_author;
+            });
+          }
         });
       });
   }
@@ -251,6 +301,8 @@ export class Driver {
 
 export class Review {
   author: string;
+  ru_author: string;
+  en_author: string;
   stars: number;
   description: string;
 }

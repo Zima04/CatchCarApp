@@ -13,51 +13,62 @@
     box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
     color: #111111;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
     width: 100%;
 
-    mat-form-field {
-      padding: 15px 10px 3px;
-      width: 300px;
-    }
-
-    .button-confirm {
-      border-radius: 9px/8px;
-      cursor: pointer;
-      display: inline-block;
-      font-size: 13px;
-      font-weight: 700;
-      height: 47px;
-      line-height: 47px;
-      margin: 5px;
-      outline: 0;
-      padding: 0 10px;
-      text-decoration: none;
-      text-transform: uppercase;
-    }
-
-    .clock-container {
+    .functional-block-row {
       display: flex;
-      padding: 15px 10px 14px;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 100%;
 
-      .clock {
-        border: none;
-        border-bottom: 1px solid #73797a;
-        font-family: Roboto, "Helvetica Neue", sans-serif;
-        font-size: inherit;
-        font-weight: 400;
-        line-height: 1.125;
-        opacity: 0.8;
-        padding: 0.56em 0;
+      mat-form-field {
+        padding: 15px 10px 3px;
+        width: 300px;
       }
 
-      .clock-icon {
-        display: flex !important;
-        position: relative !important;
-        right: 20px !important;
+      .button-confirm {
+        border-radius: 9px/8px;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 700;
+        height: 47px;
+        line-height: 47px;
+        margin: 5px;
+        outline: 0;
+        padding: 0 10px;
+        text-decoration: none;
+        text-transform: uppercase;
       }
 
+      .clock-container {
+        display: flex;
+        padding: 15px 10px 14px;
+
+        .clock {
+          border: none;
+          border-bottom: 1px solid #73797a;
+          font-family: Roboto, "Helvetica Neue", sans-serif;
+          font-size: inherit;
+          font-weight: 400;
+          line-height: 1.125;
+          opacity: 0.8;
+          padding: 0.56em 0;
+        }
+
+        .clock-icon {
+          display: flex !important;
+          position: relative !important;
+          right: 20px !important;
+        }
+
+      }
+    }
+    .alert {
+      padding: 0 10px;
     }
   }
 

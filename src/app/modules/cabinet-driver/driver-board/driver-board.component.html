@@ -7,59 +7,65 @@
     </mat-card-header>
     <mat-card-content>
       <div class="functional-block">
+        <div class="functional-block-row">
 
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="{{'Select start point' | translate}}" autocorrect="off" autocapitalize="off"
-                 spellcheck="off"
-                 type="text"
-                 class="form-control" #searchStart>
-        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="{{'Select start point' | translate}}" autocorrect="off" autocapitalize="off"
+                   spellcheck="off"
+                   type="text"
+                   class="form-control" #searchStart>
+          </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="{{'Select finish point' | translate}}" autocorrect="off" autocapitalize="off"
-                 spellcheck="off"
-                 type="text"
-                 class="form-control" #searchFinish>
-        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="{{'Select finish point' | translate}}" autocorrect="off" autocapitalize="off"
+                   spellcheck="off"
+                   type="text"
+                   class="form-control" #searchFinish>
+          </mat-form-field>
 
-        <mat-form-field>
-          <input matInput [matDatepicker]="da" placeholder="{{'Select day' | translate}}"
-                 (dateInput)="changeDate($event)"
-                 (dateChange)="changeDate($event)"
-                 readonly>
-          <mat-datepicker-toggle matSuffix [for]="da"></mat-datepicker-toggle>
-          <mat-datepicker #da></mat-datepicker>
-        </mat-form-field>
+          <mat-form-field>
+            <input matInput [matDatepicker]="da" placeholder="{{'Select day' | translate}}"
+                   (dateInput)="changeDate($event)"
+                   (dateChange)="changeDate($event)"
+                   readonly>
+            <mat-datepicker-toggle matSuffix [for]="da"></mat-datepicker-toggle>
+            <mat-datepicker #da></mat-datepicker>
+          </mat-form-field>
 
-        <div class="clock-container">
-          <input class="clock" placeholder="{{'Select time' | translate}}" [ngxTimepicker]="fullTime" [format]="24"
-                 readonly>
-          <ngx-material-timepicker #fullTime
-                                   (timeSet)="changeTime($event)"
-                                   [cancelBtnTmpl]="cancelBtn"
-                                   [confirmBtnTmpl]="confirmBtn"
-          ></ngx-material-timepicker>
-          <ngx-material-timepicker-toggle [for]="fullTime" class="clock-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="16px" height="16px"
-                 ngxMaterialTimepickerToggleIcon>
-              <path
-                d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M16,16H7.995 C7.445,16,7,15.555,7,15.005v-0.011C7,14.445,7.445,14,7.995,14H14V5.995C14,5.445,14.445,5,14.995,5h0.011 C15.555,5,16,5.445,16,5.995V16z"/>
-            </svg>
-          </ngx-material-timepicker-toggle>
+          <div class="clock-container">
+            <input class="clock" placeholder="{{'Select time' | translate}}" [ngxTimepicker]="fullTime" [format]="24"
+                   readonly>
+            <ngx-material-timepicker #fullTime
+                                     (timeSet)="changeTime($event)"
+                                     [cancelBtnTmpl]="cancelBtn"
+                                     [confirmBtnTmpl]="confirmBtn"
+            ></ngx-material-timepicker>
+            <ngx-material-timepicker-toggle [for]="fullTime" class="clock-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="16px" height="16px"
+                   ngxMaterialTimepickerToggleIcon>
+                <path
+                  d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M16,16H7.995 C7.445,16,7,15.555,7,15.005v-0.011C7,14.445,7.445,14,7.995,14H14V5.995C14,5.445,14.445,5,14.995,5h0.011 C15.555,5,16,5.445,16,5.995V16z"/>
+              </svg>
+            </ngx-material-timepicker-toggle>
 
-          <ng-template #cancelBtn>
-            <button class="button-confirm">{{'Cancel' | translate}}</button>
-          </ng-template>
-          <ng-template #confirmBtn>
-            <button class="button-confirm">{{'Confirm' | translate}}</button>
-          </ng-template>
+            <ng-template #cancelBtn>
+              <button class="button-confirm">{{'Cancel' | translate}}</button>
+            </ng-template>
+            <ng-template #confirmBtn>
+              <button class="button-confirm">{{'Confirm' | translate}}</button>
+            </ng-template>
+          </div>
+
+          <button class="button-confirm" (click)="createTrip()">
+            {{'Create trip' | translate}}
+          </button>
+        </div>
+        <div *ngFor="let alert of alerts">
+          <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
         </div>
 
-        <button class="button-confirm" (click)="createTrip()">
-          {{'Create trip' | translate}}
-        </button>
-
       </div>
+
     </mat-card-content>
   </mat-card>
   <mat-card class="card-cont-dark">

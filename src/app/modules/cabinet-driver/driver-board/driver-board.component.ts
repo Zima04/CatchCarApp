@@ -3,6 +3,7 @@ import {ImageUploaderOptions} from 'ngx-image-uploader';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {MatDatepickerInputEvent} from '@angular/material';
+import {AlertComponent} from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-driver-board',
@@ -34,21 +35,29 @@ export class DriverBoardComponent implements OnInit, AfterViewInit {
       phoneNumber: '+375-29-292-24-02',
       reviews: [{
         author: 'Анна Коренина',
+        ru_author: 'Анна Коренина',
+        en_author: 'Anna Korenina',
         stars: 4,
         description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
       },
         {
           author: 'Мария Акакиевич',
+          ru_author: 'Мария Акакиевич',
+          en_author: 'Maria Akakievich',
           stars: 2,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
         {
           author: 'Ольга Петрова',
+          ru_author: 'Ольга Петрова',
+          en_author: 'Olga Petrova',
           stars: 5,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
         {
           author: 'Петр Вальштейн',
+          ru_author: 'Петр Вальштейн',
+          en_author: 'Petr Valshtein',
           stars: 2,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
@@ -68,21 +77,29 @@ export class DriverBoardComponent implements OnInit, AfterViewInit {
       phoneNumber: '+375-29-292-24-02',
       reviews: [{
         author: 'Анна Коренина',
+        ru_author: 'Анна Коренина',
+        en_author: 'Anna Korenina',
         stars: 4,
         description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
       },
         {
           author: 'Мария Акакиевич',
+          ru_author: 'Мария Акакиевич',
+          en_author: 'Maria Akakievich',
           stars: 2,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
         {
           author: 'Ольга Петрова',
+          ru_author: 'Ольга Петрова',
+          en_author: 'Olga Petrova',
           stars: 5,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
         {
           author: 'Петр Вальштейн',
+          ru_author: 'Петр Вальштейн',
+          en_author: 'Petr Valshtein',
           stars: 2,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
@@ -102,21 +119,29 @@ export class DriverBoardComponent implements OnInit, AfterViewInit {
       phoneNumber: '+375-29-292-24-02',
       reviews: [{
         author: 'Анна Коренина',
+        ru_author: 'Анна Коренина',
+        en_author: 'Anna Korenina',
         stars: 4,
         description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
       },
         {
           author: 'Мария Акакиевич',
+          ru_author: 'Мария Акакиевич',
+          en_author: 'Maria Akakievich',
           stars: 2,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
         {
           author: 'Ольга Петрова',
+          ru_author: 'Ольга Петрова',
+          en_author: 'Olga Petrova',
           stars: 5,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
         {
           author: 'Петр Вальштейн',
+          ru_author: 'Петр Вальштейн',
+          en_author: 'Petr Valshtein',
           stars: 2,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
@@ -136,21 +161,29 @@ export class DriverBoardComponent implements OnInit, AfterViewInit {
       phoneNumber: '+375-29-292-24-02',
       reviews: [{
         author: 'Анна Коренина',
+        ru_author: 'Анна Коренина',
+        en_author: 'Anna Korenina',
         stars: 4,
         description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
       },
         {
           author: 'Мария Акакиевич',
+          ru_author: 'Мария Акакиевич',
+          en_author: 'Maria Akakievich',
           stars: 2,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
         {
           author: 'Ольга Петрова',
+          ru_author: 'Ольга Петрова',
+          en_author: 'Olga Petrova',
           stars: 5,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
         {
           author: 'Петр Вальштейн',
+          ru_author: 'Петр Вальштейн',
+          en_author: 'Petr Valshtein',
           stars: 2,
           description: 'Отличный водитель.Просто пулемёт.Интересный баблабол'
         },
@@ -173,8 +206,17 @@ export class DriverBoardComponent implements OnInit, AfterViewInit {
 
   constructor(private fb: FormBuilder, private translate: TranslateService) {
     this.driversInformation.forEach(driver => {
-      if (translate.currentLang === 'ru' || !translate.currentLang) driver.name = driver.ru_name;
-      else driver.name = driver.en_name;
+      if (translate.currentLang === 'ru' || !translate.currentLang) {
+        driver.name = driver.ru_name;
+        driver.reviews.forEach(review => {
+          review.author = review.ru_author;
+        });
+      } else {
+        driver.name = driver.en_name;
+        driver.reviews.forEach(review => {
+          review.author = review.en_author;
+        });
+      }
     });
   }
 
@@ -183,8 +225,17 @@ export class DriverBoardComponent implements OnInit, AfterViewInit {
     this.translate.onLangChange
       .subscribe((event: LangChangeEvent) => {
         this.driversInformation.forEach(driver => {
-          if (event.lang === 'ru') driver.name = driver.ru_name;
-          else driver.name = driver.en_name;
+          if (event.lang === 'ru') {
+            driver.name = driver.ru_name;
+            driver.reviews.forEach(review => {
+              review.author = review.ru_author;
+            });
+          } else {
+            driver.name = driver.en_name;
+            driver.reviews.forEach(review => {
+              review.author = review.en_author;
+            });
+          }
         });
       });
     this.editForm = this.fb.group({
@@ -215,6 +266,11 @@ export class DriverBoardComponent implements OnInit, AfterViewInit {
   }
 
   createTrip() {
+    this.alerts.push({
+      type: 'success',
+      msg: `Вы добавили новую поездку (добавлено: ${new Date().toLocaleTimeString()})`,
+      timeout: 5000
+    });
     const sendToServerTripInfo = {
       startPoint: this.searchStartPositionElementRef.nativeElement.value,
       endPoint: this.searchFinishPositionElementRef.nativeElement.value,
@@ -222,6 +278,10 @@ export class DriverBoardComponent implements OnInit, AfterViewInit {
       date: this.dateTrip,
     };
     console.log(sendToServerTripInfo);
+  }
+
+  onClosed(dismissedAlert: AlertComponent): void {
+    this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
   }
 }
 
@@ -242,6 +302,8 @@ export class Driver {
 
 export class Review {
   author: string;
+  ru_author: string;
+  en_author: string;
   stars: number;
   description: string;
 }
