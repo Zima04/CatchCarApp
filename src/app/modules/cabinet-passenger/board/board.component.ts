@@ -161,6 +161,7 @@ export class BoardComponent implements OnInit {
   ];
 
   constructor(private mapService: MapService, private translate: TranslateService) {
+    console.log(translate.currentLang);
     this.driversInformation.forEach(driver => {
       if (translate.currentLang === 'ru' || !translate.currentLang) driver.name = driver.ru_name;
       else driver.name = driver.en_name;
