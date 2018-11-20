@@ -1,3 +1,6 @@
+@import 'login-dark.scss';
+@import 'login-light.scss';
+
 .inner {
   color: #ffffff;
   display: flex;
@@ -6,7 +9,7 @@
   transition: 1s linear;
 
   .form-container {
-    background-color: #00695c;
+    //background-color: #00695c;
     border-radius: 10px;
     margin: 50px 0;
     min-width: 700px;
@@ -55,22 +58,26 @@
       }
 
       .forget-password-span {
-        color: #f4c288;
+        //color: #f4c288;
         cursor: pointer;
         font-size: 12px;
         margin-top: -13px;
-        width: 58%;
+        width: 67%;
       }
 
-      .registration-span{
-        color: #f4c288;
+      .registration-span {
+        //color: #f4c288;
         cursor: pointer;
         font-size: 12px;
         margin-top: -13px;
+        white-space: nowrap;
       }
 
       .form-checkbox {
+        display: flex;
         padding-bottom: 20px;
+        width: 80%;
+
         input[type=checkbox], input[type=radio] {
           cursor: pointer;
           margin: 0 10px 10px 0;
@@ -105,8 +112,8 @@
         vertical-align: baseline;
 
         .submit-button {
-          background-color: #eebc7c;
-          border: 1px solid #00695c;
+          //background-color: #eebc7c;
+          //border: 1px solid #00695c;
           border-radius: 9px/8px;
           color: #fff;
           cursor: pointer;
@@ -136,19 +143,19 @@
   .form-container {
     min-width: 300px !important;
 
-    .form-header{
-      line-height: 28px!important;
+    .form-header {
+      line-height: 28px !important;
     }
     .form-row-custom {
       flex-direction: column;
     }
 
-    .form-input{
+    .form-input {
       width: 100% !important;
     }
 
-    .registration-span{
-      margin-top: 0!important;
+    .registration-span {
+      margin-top: 0 !important;
     }
   }
 }

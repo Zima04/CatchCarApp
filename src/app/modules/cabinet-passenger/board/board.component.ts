@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MapService} from '../../../services/map-service.service';
 import {MatDatepickerInputEvent} from '@angular/material';
-import {TranslateService} from '@ngx-translate/core';
+import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-board',
@@ -20,10 +20,12 @@ export class BoardComponent implements OnInit {
   timeTrip: string;
   selectDriverInfo: Driver;
   numberDriver: number;
-  alert = {};
+  alert: Alert = new Alert();
   driversInformation: Driver[] = [
     {
       name: 'Александров Петр',
+      ru_name: 'Александров Петр',
+      en_name: 'Alexandrov Petr',
       dateTrip: '29.10.2018',
       timeTrip: '15:45',
       start: {lat: 53.91900254, lng: 27.56883707},
@@ -56,6 +58,8 @@ export class BoardComponent implements OnInit {
     },
     {
       name: 'Евдокимов Олег',
+      ru_name: 'Евдокимов Олег',
+      en_name: 'Evdokimov Oleg',
       dateTrip: '15.10.2018',
       timeTrip: '23:45',
       start: {lat: 53.9052831, lng: 27.5391841},
@@ -88,6 +92,8 @@ export class BoardComponent implements OnInit {
     },
     {
       name: 'Семенова Анна',
+      ru_name: 'Семенова Анна',
+      en_name: 'Semenova Anna',
       dateTrip: '27.10.2018',
       timeTrip: '10:00',
       start: {lat: 53.9412651, lng: 27.6880516},
@@ -120,6 +126,8 @@ export class BoardComponent implements OnInit {
     },
     {
       name: 'Титевук Константин',
+      ru_name: 'Титевук Константин',
+      en_name: 'Titevuk Konstantin',
       dateTrip: '29.10.2018',
       timeTrip: '18:20',
       start: {lat: 53.8663053, lng: 27.5494088},
@@ -152,13 +160,23 @@ export class BoardComponent implements OnInit {
     },
   ];
 
-  constructor(private mapService: MapService) {
+  constructor(private mapService: MapService, private translate: TranslateService) {
+    this.driversInformation.forEach(driver => {
+      if (translate.currentLang === 'ru' || !translate.currentLang) driver.name = driver.ru_name;
+      else driver.name = driver.en_name;
+    });
   }
-
 
 
   ngOnInit() {
     // this.changeWay(0);
+    this.translate.onLangChange
+      .subscribe((event: LangChangeEvent) => {
+        this.driversInformation.forEach(driver => {
+          if (event.lang === 'ru') driver.name = driver.ru_name;
+          else driver.name = driver.en_name;
+        });
+      });
   }
 
 
@@ -205,6 +223,8 @@ export class BoardComponent implements OnInit {
 
 export class Driver {
   name: string;
+  ru_name: string;
+  en_name: string;
   dateTrip: string;
   timeTrip: string;
   carName: string;
@@ -220,4 +240,10 @@ export class Review {
   author: string;
   stars: number;
   description: string;
+}
+
+export class Alert {
+  type: string;
+  msg: string;
+  timeout: number;
 }

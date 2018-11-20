@@ -1,5 +1,7 @@
+@import 'header-dark.scss';
+@import 'header-light.scss';
+
 .header {
-  background-color: #4c8c4a;
   color: #ffffff;
   display: flex;
   height: 70px;
@@ -38,6 +40,10 @@
       cursor: pointer;
       height: 16px;
       width: 22px;
+    }
+
+    .select-lang{
+      outline: 1px solid lavenderblush;
     }
   }
 

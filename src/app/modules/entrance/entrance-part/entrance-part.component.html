@@ -1,19 +1,23 @@
 <div class="entrance-container">
   <mat-card class="card">
-    <div class="header-span" [textContent]="constants.headerText"></div>
+    <div class="header-span" [textContent]=" 'HeaderTextEntrance' | translate"></div>
+    <div class="flags">
+      <div class="russian" [ngClass]="{'select-lang': selectLang == 'ru'}" (click)="switchLanguage('ru')"></div>
+      <div class="english" [ngClass]="{'select-lang': selectLang == 'en'}" (click)="switchLanguage('en')"></div>
+    </div>
     <div class="choice-block">
       <div class="position" (click)="choosePosition('водитель')">
         <div class="icon-block">
           <i class="fa fa-car fa-3x" aria-hidden="true"> </i>
         </div>
-        <span class="position-span" [textContent]="constants.driver"></span>
+        <span class="position-span" [textContent]="'DriverPosition' | translate"></span>
 
       </div>
       <div class="position" (click)="choosePosition('пассажир')">
         <div class="icon-block">
           <i class="fa fa-male fa-3x" aria-hidden="true"> </i>
         </div>
-        <div class="position-span" [textContent]="constants.passenger"></div>
+        <div class="position-span" [textContent]="'PassengerPosition' | translate"></div>
 
       </div>
     </div>

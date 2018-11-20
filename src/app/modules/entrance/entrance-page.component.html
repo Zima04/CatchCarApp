@@ -1,8 +1,3 @@
-<div class="wrapper">
-  <h1 translate>Title</h1>
-
-  <div>
-    {{ 'Intro' | translate:user }}
-  </div>
+<div class="wrapper" [ngClass]="{'light-theme': theme === 'light', 'dark-theme': theme === 'dark'}">
   <router-outlet></router-outlet>
 </div>

@@ -1,29 +1,29 @@
 <div class="inner" id="inner">
   <div class="form-container">
     <div class="form-header">
-      Регистрация {{position}}
+      {{'Registration' | translate }}
     </div>
     <form [formGroup]="loginForm" class="login-form">
       <div class="form-row-custom">
         <div class="form-row-text">
-          Телефон:
+          {{'Phone' | translate }}
         </div>
-        <input mask="00-000-00-00" prefix="+(375)" [showMaskTyped]="true" class="form-input" formControlName="phone">
+        <input mask="00-000-00-00" prefix="+(375) " [showMaskTyped]="true" class="form-input" formControlName="phone">
       </div>
       <div class="form-row-custom">
         <div class="form-row-text">
-          Пароль:
+          {{'Password' | translate }}
         </div>
         <input class="form-input" type="password" formControlName="password">
       </div>
       <div class="form-row-custom">
         <div class="form-row-text">
-          Потвердите пароль:
+          {{'Confirm password' | translate }}
         </div>
         <input class="form-input" type="password" formControlName="confirm_password">
       </div>
       <div class="form-footer">
-        <input type="submit" class="submit-button" value="Зарегистрироваться"
+        <input type="submit" class="submit-button" value=" {{'To register' | translate }}"
                [ngClass]="{'disable':loginForm.invalid && loginForm.dirty || loginForm.pristine}"
                (click)="registration()" [disabled]="loginForm.invalid && loginForm.dirty || loginForm.pristine"
         >

@@ -1,0 +1,14 @@
+:host-context(.light-theme) .inner{
+  color: #ffffff;
+
+  .form-container {
+    background-color: #424242;
+
+    .form-footer {
+      .submit-button {
+        background-color: #eebc7c;
+        border: 1px solid  #424242;
+      }
+    }
+  }
+}

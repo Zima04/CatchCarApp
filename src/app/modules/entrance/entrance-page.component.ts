@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
+import {Component, OnInit} from '@angular/core';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'entrace-page',
@@ -7,6 +7,11 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrls: ['./entrance-page.component.scss']
 })
 export class EntrancePageComponent implements OnInit {
+  theme: string;
+
+  constructor() {
+    this.theme = environment.theme;
+  }
 
   ngOnInit() {
   }

@@ -1,3 +1,6 @@
+@import "registration-dark";
+@import "registration-light";
+
 .inner {
   color: #ffffff;
   display: flex;
@@ -6,7 +9,6 @@
   transition: 1s linear;
 
   .form-container {
-    background-color: #00695c;
     border-radius: 10px;
     margin: 50px 0;
     min-width: 700px;
@@ -64,8 +66,6 @@
         vertical-align: baseline;
 
         .submit-button {
-          background-color: #eebc7c;
-          border: 1px solid #00695c;
           border-radius: 9px/8px;
           color: #fff;
           cursor: pointer;
@@ -79,7 +79,7 @@
           text-decoration: none;
           text-transform: uppercase;
         }
-        //#c29a6d
+
         .disable {
           background-color: #acb5c5;
           box-shadow: none;

@@ -1,0 +1,22 @@
+:host-context(.dark-theme) .inner {
+  color: #ffffff;
+
+  .form-container {
+    background-color: #00695c;
+
+    .forget-password-span {
+      color: #f4c288;
+    }
+
+    .registration-span {
+      color: #f4c288;
+    }
+
+    .form-footer {
+      .submit-button {
+        background-color: #eebc7c;
+        border: 1px solid #00695c;
+      }
+    }
+  }
+}

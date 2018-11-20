@@ -1,18 +1,41 @@
-
 .entrance-container {
 
   .card {
     //max-width: 400px;
-    background-color: #00695c;
     color: #ffffff;
     min-width: 700px;
     padding: 0;
 
     .header-span {
-      border-bottom: 2px solid #f4c288;
       font-size: 28px;
       padding: 20px;
       text-align: center;
+    }
+
+    .flags {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      position: relative;
+      bottom: 23px;
+
+      .russian {
+        background: url(https://lipis.github.io/flag-icon-css/flags/4x3/ru.svg);
+        cursor: pointer;
+        height: 15px;
+        margin-right: 10px;
+        width: 20px;
+      }
+      .english {
+        background: url(https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg);
+        cursor: pointer;
+        height: 16px;
+        width: 22px;
+      }
+
+      .select-lang{
+        outline: 1px solid lavenderblush;
+      }
     }
 
     .choice-block {
@@ -27,7 +50,6 @@
 
         .icon-block {
           align-items: center;
-          background-color: #f4c288;
           border-radius: 100%;
           color: #ffffff;
           display: flex;
@@ -43,19 +65,64 @@
           padding-top: 15px;
           transition: 0.5s linear;
         }
+      }
+    }
+  }
+}
 
-        &:hover {
-          .icon-block {
-            //background-color: #00695c;
-            color: #00695c;
-          }
+:host-context(.dark-theme) .card {
+  background-color: #00695c;
 
-          .position-span {
-            color: #f4c288;
-          }
+  .header-span {
+    border-bottom: 2px solid #f4c288;
+  }
+
+  .choice-block {
+
+    .position {
+
+      .icon-block {
+        background-color: #f4c288;
+      }
+
+      &:hover {
+        .icon-block {
+          color: #00695c;
+        }
+
+        .position-span {
+          color: #f4c288;
         }
       }
     }
   }
-
 }
+
+:host-context(.light-theme) .card {
+  background-color: #424242;
+
+  .header-span {
+    border-bottom: 2px solid #f4c288;
+  }
+
+  .choice-block {
+
+    .position {
+
+      .icon-block {
+        background-color: #f4c288;
+      }
+
+      &:hover {
+        .icon-block {
+          color: #424242;
+        }
+
+        .position-span {
+          color: #f4c288;
+        }
+      }
+    }
+  }
+}
+

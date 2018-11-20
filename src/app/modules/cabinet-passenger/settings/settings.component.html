@@ -1,43 +1,43 @@
 <div class="inner" id="inner">
   <div class="form-container">
     <div class="form-header">
-      Настройка персональных данных
+      {{'Settings personal data' | translate}}
     </div>
     <form [formGroup]="editForm" class="login-form">
       <div class="form-row-custom">
         <div class="form-row-text">
-          Имя:
+          {{'Name' | translate}}
         </div>
         <input class="form-input" formControlName="name" type="text">
       </div>
       <div class="form-row-custom">
         <div class="form-row-text">
-          Телефон:
+          {{'Phone' | translate}}
         </div>
         <input mask="00-000-00-00" prefix="+(375)" [showMaskTyped]="true" class="form-input" formControlName="phone">
       </div>
       <div class="form-row-custom">
         <div class="form-row-text">
-          Старый пароль:
+          {{'Old password' | translate}}
         </div>
         <input class="form-input" type="password" formControlName="password">
       </div>
       <div class="form-row-custom">
         <div class="form-row-text">
-          Новый пароль:
+          {{'New password' | translate}}
         </div>
         <input class="form-input" type="password" formControlName="password">
       </div>
       <div class="form-row-custom">
         <div class="form-row-text">
-          Добавить новое фото:
+          {{'Add new photo' | translate}}
         </div>
         <div class="image-upload-container">
           <ngx-image-uploader [options]="options" (upload)="onUpload($event)"></ngx-image-uploader>
         </div>
       </div>
       <div class="form-footer">
-        <input type="submit" class="submit-button" value="Сохранить"
+        <input type="submit" class="submit-button" value="{{'Save' | translate}}"
                [ngClass]="{'disable':editForm.invalid && editForm.dirty || editForm.pristine}"
                [disabled]="editForm.invalid && editForm.dirty || editForm.pristine">
       </div>

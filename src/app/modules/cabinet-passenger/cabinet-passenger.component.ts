@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'cabinet-passenger',
@@ -26,8 +27,10 @@ export class CabinetPassengerComponent implements OnInit {
       url: 'settings',
     },
   ];
+  theme: string;
 
   constructor(private router: Router) {
+    this.theme = environment.theme;
   }
 
   ngOnInit() {

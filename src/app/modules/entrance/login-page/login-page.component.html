@@ -1,18 +1,18 @@
 <div class="inner" id="inner">
   <div class="form-container">
     <div class="form-header">
-      Войдите в личный кабинет уважаемый {{position}}
+     {{'Enter in Cabinet' | translate}}
     </div>
     <form [formGroup]="loginForm" class="login-form">
       <div class="form-row-custom">
         <div class="form-row-text">
-          Телефон:
+          {{'Phone' | translate}}
         </div>
-        <input mask="00-000-00-00" prefix="+(375)" [showMaskTyped]="true" class="form-input" formControlName="phone">
+        <input mask="00-000-00-00" prefix="+(375) " [showMaskTyped]="true" class="form-input" formControlName="phone">
       </div>
       <div class="form-row-custom">
         <div class="form-row-text">
-          Пароль:
+          {{'Password' | translate}}
         </div>
         <input class="form-input" type="password" formControlName="password">
       </div>
@@ -20,10 +20,10 @@
         <div class="form-row-text">
         </div>
         <div class="forget-password-span">
-          Забыли пароль?
+          {{'Forget password' | translate}}
         </div>
         <div class="registration-span" (click)="goToRegistrtion()">
-          Зарегистрироваться
+          {{'To register' | translate}}
         </div>
       </div>
       <div class="form-row-custom">
@@ -31,11 +31,11 @@
         </div>
         <div class="form-checkbox">
           <input #checkbox type="checkbox" id="checkbox" >
-          <label for="checkbox">Запомнить меня</label>
+          <label for="checkbox">{{'Remember me' | translate}}</label>
         </div>
       </div>
       <div class="form-footer">
-        <input type="submit" class="submit-button" value="Войти"
+        <input type="submit" class="submit-button" value="{{'Enter' | translate}}"
                [ngClass]="{'disable':loginForm.invalid && loginForm.dirty || loginForm.pristine}"
                (click)="login()" [disabled]="loginForm.invalid && loginForm.dirty || loginForm.pristine">
       </div>

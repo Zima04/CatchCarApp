@@ -6,14 +6,14 @@
   <div class="person-info">
 
     <div class="flags">
-      <div class="russian" (click)="switchLanguage('ru')"></div>
-      <div class="english" (click)="switchLanguage('en')"></div>
+      <div class="russian" [ngClass]="{'select-lang': selectLang == 'ru'}" (click)="switchLanguage('ru')"></div>
+      <div class="english" [ngClass]="{'select-lang': selectLang == 'en'}" (click)="switchLanguage('en')"></div>
     </div>
 
     <div class="person-image">
     </div>
     <div class="person-name">
-      Собакен Котов
+      {{personName}}
     </div>
 
   </div>

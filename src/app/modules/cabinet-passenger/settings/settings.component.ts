@@ -34,7 +34,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     const button = document.getElementsByClassName('add-image-btn');
-    const textnode = document.createTextNode('Добавить');
+    const textnode = document.createTextNode('+');
     setTimeout(function () {
       document.getElementById('inner').style.opacity = '1';
       while (button[0].childNodes[0].firstChild) {

@@ -1,0 +1,57 @@
+:host-context(.light-theme) .container-card {
+    background-color: #424242;
+    color: #ffffff;
+  }
+
+:host-context(.light-theme) .card-cont {
+  background-color: #424242;
+  color: #ffffff;
+}
+
+:host-context(.light-theme) .none-driver {
+  background-color: #424242;
+  color: #eebc7c;
+}
+
+:host-context(.light-theme) .button-confirm {
+  background-color: #1b1b1b;
+  border: 1px solid #eebc7c;
+  color: #eebc7c;
+}
+
+:host-context(.light-theme) .clock-container {
+  /deep/ .timepicker-button {
+    color: #eebc7c;
+  }
+
+  /deep/ .timepicker__header, /deep/ .timepicker__actions {
+    background-color: #1b1b1b !important;
+  }
+
+}
+
+:host-context(.light-theme) .map-info {
+
+  .list-drivers {
+    background-color: #ffffff;
+
+
+    .selectDriver {
+      background-color: #6d6d6d;
+      color: #eebc7c!important;
+    }
+
+    .item-driver {
+      i {
+        &:hover {
+          color: #ffffff;
+        }
+      }
+
+      &:hover {
+        background-color: #6d6d6d;
+      }
+    }
+  }
+}
+

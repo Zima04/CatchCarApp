@@ -1,0 +1,55 @@
+:host-context(.dark-theme) .container-card {
+  background-color: #4c8c4a;
+  color: #ffffff;
+}
+
+:host-context(.dark-theme) .card-cont {
+  background-color: #4c8c4a;
+  color: #ffffff;
+}
+
+:host-context(.dark-theme) .none-driver {
+  background-color: #4c8c4a;
+  color: #ffffff;
+}
+
+:host-context(.dark-theme) .button-confirm {
+  background-color: #eebc7c;
+  border: 1px solid #4c8c4a;
+  color: #ffffff;
+}
+
+:host-context(.dark-theme) .clock-container {
+  /deep/ .timepicker-button {
+    color: #eebc7c;
+  }
+
+  /deep/ .timepicker__header, /deep/ .timepicker__actions {
+    background-color: #00695c !important;
+  }
+}
+
+:host-context(.dark-theme) .map-info {
+
+  .list-drivers {
+    background-color: #ffffff;
+
+    .selectDriver {
+      background-color: #6f9d74;
+      color: #ffffff!important;
+    }
+
+    .item-driver {
+      i {
+        &:hover {
+          color: #eebc7c;
+        }
+      }
+
+      &:hover {
+        background-color: #6f9d74;
+      }
+    }
+  }
+}
+

@@ -1,5 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {MapService} from '../../services/map-service.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
@@ -11,8 +10,18 @@ export class HeaderComponent implements OnInit {
 
   @Output() burgerState = new EventEmitter();
 
-  constructor( private translate: TranslateService) {
-    translate.setDefaultLang('en');
+  selectLang: string = 'ru';
+  personName: 'Виктор Грачев';
+  theme: string;
+
+  constructor(private translate: TranslateService) {
+    this.theme = 'light';
+    if (this.translate.currentLang === 'ru' || !this.translate.currentLang) {
+      this.selectLang = 'ru';
+    }
+    else {
+      this.selectLang = 'en';
+    }
   }
 
   ngOnInit() {
@@ -23,6 +32,7 @@ export class HeaderComponent implements OnInit {
   }
 
   switchLanguage(language: string) {
+    this.selectLang = language;
     this.translate.use(language);
   }
 
