@@ -3,6 +3,10 @@ import {MapService} from '../../../services/map-service.service';
 import {MatDatepickerInputEvent} from '@angular/material';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {AlertComponent} from 'ngx-bootstrap';
+import {HttpClient} from '@angular/common/http';
+import {map, tap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {HttpService} from '../../../services/http.service';
 
 @Component({
   selector: 'app-board',
@@ -19,7 +23,7 @@ export class BoardComponent implements OnInit {
 
   dateTrip: Date = new Date();
   timeTrip: string;
-  selectDriverInfo: Driver;
+  selectDriverInfo: any;
   numberDriver: number;
   alerts: any[] = [];
   driversInformation: Driver[] = [
@@ -192,8 +196,12 @@ export class BoardComponent implements OnInit {
       ],
     },
   ];
+  trips: Observable<Object>;
+  _trips: any;
+  reviews: Observable<Object>;
+  _reviews: any;
 
-  constructor(private mapService: MapService, private translate: TranslateService) {
+  constructor(private mapService: MapService, private translate: TranslateService, private httpService: HttpService) {
     this.driversInformation.forEach(driver => {
       if (translate.currentLang === 'ru' || !translate.currentLang) {
         driver.name = driver.ru_name;
@@ -232,9 +240,11 @@ export class BoardComponent implements OnInit {
 
 
   changeWay(driverNumber) {
-    this.selectDriverInfo = this.driversInformation[driverNumber];
-    this.numberDriver = driverNumber;
-    this.mapService.updateMap({start: this.driversInformation[driverNumber].start, finish: this.driversInformation[driverNumber].finish});
+    this.httpService.getSelectDriverInfo(driverNumber).subscribe(res => {
+      this.selectDriverInfo = res;
+      this.numberDriver = driverNumber;
+      this.mapService.updateMap({start: this._trips[driverNumber].start, finish: this._trips[driverNumber].end});
+    });
   }
 
   changeTime(event: string) {
@@ -246,13 +256,18 @@ export class BoardComponent implements OnInit {
   }
 
   createTrip() {
-    this.changeWay(0);
     const sendToServerTripInfo = {
       startPoint: this.searchStartPositionElementRef.nativeElement.value,
       endPoint: this.searchFinishPositionElementRef.nativeElement.value,
       time: this.timeTrip,
       date: this.dateTrip,
     };
+    this.trips = this.httpService.get10Trips();
+    this.trips.subscribe(res => {
+      this._trips = res;
+      this.changeWay(0);
+    });
+
     console.log(sendToServerTripInfo);
   }
 

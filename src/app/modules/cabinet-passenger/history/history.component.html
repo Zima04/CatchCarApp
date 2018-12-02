@@ -9,7 +9,7 @@
       <!-- ID Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'Number of trip'| translate}}</th>
-        <td mat-cell *matCellDef="let row"> {{row.id}}</td>
+        <td mat-cell *matCellDef="let row"> {{row.id+1}}</td>
       </ng-container>
 
       <!-- Name Column -->
@@ -22,6 +22,11 @@
       <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'Data of trip'|translate}}</th>
         <td mat-cell *matCellDef="let row" [style.color]="row.date"> {{row.date}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'Phone'|translate}}</th>
+        <td mat-cell *matCellDef="let row"> {{row.user.phone}}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -57,7 +57,7 @@ export class MapComponent implements OnInit {
     this.searchControl = new FormControl();
     this.setCurrentPosition();
 
-    this.mapsAPILoader.load().then(() => {
+    this.mapsAPILoader.load().then(() => {  
       const startPosition = new google.maps.places.Autocomplete(this.searchStartPositionElementRef.nativeElement, {
         types: ['address']
       });

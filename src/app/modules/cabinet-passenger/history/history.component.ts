@@ -1,5 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {HttpService} from '../../../services/http.service';
+import {Observable, ObservableInput} from 'rxjs';
 
 export interface UserData {
   id: string;
@@ -20,30 +22,42 @@ const NAMES: string[] = ['Мария', 'Антон', 'Петр', 'Владисл
 })
 export class HistoryComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'date'];
+  displayedColumns: string[] = ['id', 'name', 'date', 'phone'];
   dataSource: MatTableDataSource<UserData>;
+  trips: any = [];
+  names: any = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
+  constructor(private httpService: HttpService) {
+    this.httpService.getAllTrips().subscribe(res => {
+      this.trips = res;
+      console.log(this.trips);
+      this.trips.forEach(item => {
+        item.name = item.user.ruName;
+      });
+      console.log(this.trips);
+      this.dataSource = new MatTableDataSource(this.trips);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+
+    console.log(this.trips);
+
   }
 
   applyFilter(filterValue: string) {
+    console.log(filterValue);
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+      // this.dataSource.paginator.firstPage();
     }
   }
 }

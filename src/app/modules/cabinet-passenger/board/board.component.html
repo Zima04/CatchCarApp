@@ -9,13 +9,15 @@
       <div class="functional-block">
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="{{'Select start point' | translate}}" autocorrect="off" autocapitalize="off" spellcheck="off"
+          <input matInput placeholder="{{'Select start point' | translate}}" autocorrect="off" autocapitalize="off"
+                 spellcheck="off"
                  type="text"
                  class="form-control" #searchStart>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="{{'Select finish point' | translate}}" autocorrect="off" autocapitalize="off" spellcheck="off"
+          <input matInput placeholder="{{'Select finish point' | translate}}" autocorrect="off" autocapitalize="off"
+                 spellcheck="off"
                  type="text"
                  class="form-control" #searchFinish>
         </mat-form-field>
@@ -30,7 +32,8 @@
         </mat-form-field>
 
         <div class="clock-container">
-          <input class="clock" placeholder="{{'Select time' | translate}}" [ngxTimepicker]="fullTime" [format]="24" readonly>
+          <input class="clock" placeholder="{{'Select time' | translate}}" [ngxTimepicker]="fullTime" [format]="24"
+                 readonly>
           <ngx-material-timepicker #fullTime
                                    (timeSet)="changeTime($event)"
                                    [cancelBtnTmpl]="cancelBtn"
@@ -73,14 +76,17 @@
         </div>
         <div class="list-drivers" *ngIf="this.selectDriverInfo">
           <div class="header-list-drivers">{{'Select the best trip' | translate}}</div>
-          <div class="item-driver" *ngFor="let driver of driversInformation;let i = index" (click)="changeWay(i)"
+          <div class="item-driver" *ngFor="let driver of trips | async ;let i = index" (click)="changeWay(i)"
                [ngClass]="{selectDriver: i == numberDriver}">
-            {{i+1}})<span class="span-driver">{{driver.name}}</span>
+
+            <span class="span-driver" *ngIf="translate.currentLang === 'ru'"> {{i+1}}) {{driver.user.ruName}}</span>
+            <span class="span-driver" *ngIf="translate.currentLang === 'en'"> {{i+1}}) {{driver.user.enName}}</span>
+
             <div class="benifits">
-              <i class="fa fa-car" aria-hidden="true" matTooltip="{{driver.carName}}"></i>
-              <i class="fa fa-clock-o" aria-hidden="true" matTooltip="{{driver.dateTrip}} {{driver.timeTrip}}"></i>
+              <i class="fa fa-car" aria-hidden="true" matTooltip="{{driver?.user.car}}"></i>
+              <i class="fa fa-clock-o" aria-hidden="true" matTooltip="{{driver.date}} {{driver.time}}"></i>
               <i class="fa fa-calendar-check-o" aria-hidden="true" matTooltip="Водитель ездит каждый день"
-                 *ngIf="driver.everydayTrip"></i>
+                 *ngIf="driver.everyday"></i>
             </div>
           </div>
         </div>
@@ -99,14 +105,16 @@
         <mat-card class="driver-card">
           <mat-card-header>
             <div mat-card-avatar class="card-header-image"></div>
-            <mat-card-title>{{selectDriverInfo.name}}</mat-card-title>
-            <mat-card-subtitle>{{selectDriverInfo.dateTrip}} {{selectDriverInfo.timeTrip}}</mat-card-subtitle>
-            <mat-card-subtitle>{{selectDriverInfo.phoneNumber}}</mat-card-subtitle>
+            <!--<mat-card-title>{{selectDriverInfo[0].user.ruName}}</mat-card-title>-->
+            <mat-card-title *ngIf="translate.currentLang === 'ru'">{{selectDriverInfo[0].user.ruName}}</mat-card-title>
+            <mat-card-title *ngIf="translate.currentLang === 'en'">{{selectDriverInfo[0].user.enName}}</mat-card-title>
+            <mat-card-subtitle>{{selectDriverInfo[0].user.date}} {{selectDriverInfo[0].user.time}}</mat-card-subtitle>
+            <mat-card-subtitle>{{selectDriverInfo[0].user.phone}}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
             <p>
-              {{selectDriverInfo.carName}}<br>
-              {{selectDriverInfo.aboutDriver}}
+              {{selectDriverInfo[0].user.car}}<br>
+              {{selectDriverInfo[0].user.about}}
             </p>
           </mat-card-content>
           <mat-card-actions>
@@ -115,7 +123,8 @@
           </mat-card-actions>
 
           <div *ngFor="let alert of alerts">
-            <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
+            <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" (onClosed)="onClosed(alert)">{{ alert.msg }}
+            </alert>
           </div>
         </mat-card>
       </mat-card-content>
@@ -125,10 +134,11 @@
         <mat-card-title>{{ 'Reviews' | translate }}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <mat-card class="reviews-item" *ngFor="let review of selectDriverInfo.reviews">
+        <mat-card class="reviews-item" *ngFor="let review of selectDriverInfo">
           <mat-card-header>
             <div mat-card-avatar class="card-header-image"></div>
-            <mat-card-title>{{review.author}}</mat-card-title>
+            <mat-card-title *ngIf="translate.currentLang === 'ru'">{{review.reviewer.ruName}}</mat-card-title>
+            <mat-card-title *ngIf="translate.currentLang === 'en'">{{review.reviewer.enName}}</mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <p>
