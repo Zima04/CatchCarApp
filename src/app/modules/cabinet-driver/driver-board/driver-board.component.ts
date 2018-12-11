@@ -4,6 +4,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {MatDatepickerInputEvent} from '@angular/material';
 import {AlertComponent} from 'ngx-bootstrap';
+import {Observable} from 'rxjs';
+import {HttpService} from '../../../services/http.service';
 
 @Component({
   selector: 'app-driver-board',
@@ -17,7 +19,7 @@ export class DriverBoardComponent implements OnInit, AfterViewInit {
   @ViewChild('searchFinish')
   public searchFinishPositionElementRef: ElementRef;
 
-  selectDriverInfo: Driver;
+  selectDriverInfo: any;
   numberDriver: number;
 
   driversInformation: Driver[] = [
@@ -202,9 +204,12 @@ export class DriverBoardComponent implements OnInit, AfterViewInit {
     maxImageSize: 3
   };
 
+  reviews: Observable<Object>;
+  _reviews: any;
+
   public editForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private translate: TranslateService) {
+  constructor(private fb: FormBuilder, private translate: TranslateService , private httpService: HttpService) {
     this.driversInformation.forEach(driver => {
       if (translate.currentLang === 'ru' || !translate.currentLang) {
         driver.name = driver.ru_name;
@@ -238,11 +243,21 @@ export class DriverBoardComponent implements OnInit, AfterViewInit {
           }
         });
       });
+
+    this.httpService.getSelectDriverInfo(1).subscribe(res => {
+      this.selectDriverInfo = res;
+      console.log(this.selectDriverInfo);
+      this.editForm.get('name').setValue(this.selectDriverInfo[0].user.ruName);
+      this.editForm.get('phone').setValue(this.selectDriverInfo[0].user.phone);
+      this.editForm.get('description').setValue(this.selectDriverInfo[0].description);
+      this.editForm.get('car').setValue('Audi A8, 2017');
+    });
+
     this.editForm = this.fb.group({
-      name: [this.driversInformation[0].name, [Validators.required]],
-      phone: [this.driversInformation[0].phoneNumber, [Validators.required, Validators.maxLength(9), Validators.minLength(9)]],
-      description: [this.driversInformation[0].aboutDriver, [Validators.required]],
-      car: [this.driversInformation[0].carName, [Validators.required]],
+      name: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      car: ['', [Validators.required]],
     });
   }
 

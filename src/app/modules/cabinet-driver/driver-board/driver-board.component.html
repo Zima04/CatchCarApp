@@ -126,7 +126,7 @@
                 </div>
               </div>
               <div class="form-footer">
-                <input type="submit" class="submit-button" value="{{'Save' | translate}}"
+                <input type="submit" class="button-confirm btn" value="{{'Save' | translate}}"
                        [ngClass]="{'disable':editForm.invalid && editForm.dirty || editForm.pristine}"
                        [disabled]="editForm.invalid && editForm.dirty || editForm.pristine">
               </div>
@@ -141,10 +141,11 @@
         <mat-card-title>{{ 'Reviews' | translate }}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <mat-card class="reviews-item" *ngFor="let review of this.driversInformation[0].reviews">
+        <mat-card class="reviews-item" *ngFor="let review of this.selectDriverInfo">
           <mat-card-header>
             <div mat-card-avatar class="card-header-image"></div>
-            <mat-card-title>{{review.author}}</mat-card-title>
+            <mat-card-title *ngIf="translate.currentLang === 'ru'">{{review.reviewer.ruName}}</mat-card-title>
+            <mat-card-title *ngIf="translate.currentLang === 'en'">{{review.reviewer.enName}}</mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <p>

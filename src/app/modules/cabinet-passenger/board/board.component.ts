@@ -4,7 +4,7 @@ import {MatDatepickerInputEvent} from '@angular/material';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {AlertComponent} from 'ngx-bootstrap';
 import {HttpClient} from '@angular/common/http';
-import {map, tap} from 'rxjs/operators';
+import {filter, map, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {HttpService} from '../../../services/http.service';
 
@@ -196,7 +196,7 @@ export class BoardComponent implements OnInit {
       ],
     },
   ];
-  trips: Observable<Object>;
+  trips: Observable<any>;
   _trips: any;
   reviews: Observable<Object>;
   _reviews: any;
@@ -241,8 +241,10 @@ export class BoardComponent implements OnInit {
 
   changeWay(driverNumber) {
     this.httpService.getSelectDriverInfo(driverNumber).subscribe(res => {
+      console.log(res);
       this.selectDriverInfo = res;
       this.numberDriver = driverNumber;
+
       this.mapService.updateMap({start: this._trips[driverNumber].start, finish: this._trips[driverNumber].end});
     });
   }
@@ -265,10 +267,11 @@ export class BoardComponent implements OnInit {
     this.trips = this.httpService.get10Trips();
     this.trips.subscribe(res => {
       this._trips = res;
+      console.log(this._trips);
       this.changeWay(0);
     });
 
-    console.log(sendToServerTripInfo);
+
   }
 
   confirmTrip() {
@@ -286,11 +289,15 @@ export class BoardComponent implements OnInit {
     console.log(sendToServerTripInfo);
   }
 
-  deleteDriver() {
+  deleteDriver(number) {
+    console.log(number);
+    this.trips = this.trips.pipe(map(item => {
+      return item.filter(driver => driver.id !== number);
+    }));
     this.alerts.push({
       type: 'danger',
       msg: `Данный водитель больше не будет показываться (добавлено: ${new Date().toLocaleTimeString()})`,
-      timeout: 5000
+      timeout: 3000
     });
   }
 

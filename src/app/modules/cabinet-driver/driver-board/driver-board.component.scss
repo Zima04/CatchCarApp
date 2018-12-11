@@ -219,7 +219,7 @@
           width: 80%;
 
           &:focus {
-            background-color: #b5b5a7;
+            background-color: #eaeae3;
             border: 1px solid #fcaf17;
             box-shadow: inset 0 1px 3px rgba(252, 175, 23, .1);
           }
@@ -239,7 +239,7 @@
         }
 
         .form-input:focus {
-          background-color: #b5b5a7;
+          background-color: #eaeae3;
           border: 1px solid #fcaf17;
           box-shadow: inset 0 1px 3px rgba(252, 175, 23, .1);
         }
@@ -256,7 +256,6 @@
 
         .submit-button {
           border-radius: 9px/8px;
-          color: #fff;
           cursor: pointer;
           display: inline-block;
           font-size: 20px;

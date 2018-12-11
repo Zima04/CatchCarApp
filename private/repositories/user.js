@@ -1,9 +1,9 @@
 const CRUDRepository = require('../common/crudRepository');
 
-const createUser = (id) => ({
+const createUser = (id,number) => ({
   id,
-  enName: getName()[0],
-  ruName: getName()[1],
+  enName: getName(number)[0],
+  ruName: getName(number)[1],
   about: `Еду быстро и надежно, каждое утро на Уручье.Оплату принимаю печенками :)`,
   phone: PHONES[ Math.round(Math.random() * (9))],
 });
@@ -25,12 +25,11 @@ const PHONES = [
   '+375 29 134 43 54',
   '+375 29 568 33 37',
   '+375 29 412 01 10'];
-function getName(){
-  let numberOfPerson = Math.round(Math.random() * (EN_NAMES.length - 1));
-  return [EN_NAMES[numberOfPerson],RU_NAMES[numberOfPerson]];
+function getName(number){
+  return [EN_NAMES[number],RU_NAMES[number]];
 }
 
 const users = Array.from({length: 100})
-  .map((_, i) => createUser(i));
+  .map((_, i) => createUser(i,Math.round(Math.random() * (EN_NAMES.length - 1))));
 
 module.exports = new CRUDRepository(users);

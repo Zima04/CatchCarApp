@@ -15,7 +15,8 @@
     <div class="person-image">
     </div>
     <div class="person-name">
-      {{personName}}
+      <span *ngIf="selectLang === 'ru'">{{personInfo?.user.ruName}}</span>
+      <span *ngIf="selectLang === 'en'">{{personInfo?.user.enName}}</span>
     </div>
 
   </div>

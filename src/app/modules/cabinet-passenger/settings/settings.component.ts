@@ -2,6 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {ImageUploaderOptions} from 'ngx-image-uploader';
+import {HttpService} from '../../../services/http.service';
 
 @Component({
   selector: 'app-settings',
@@ -18,13 +19,17 @@ export class SettingsComponent implements OnInit, AfterViewInit {
     maxImageSize: 3
   };
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router,private httpService: HttpService) {
 
   }
 
   public editForm: FormGroup;
 
   ngOnInit() {
+    this.httpService.getSelectDriverInfo(1).subscribe(res => {
+      this.editForm.get('name').setValue(res[0].user.ruName);
+      this.editForm.get('phone').setValue(res[0].user.phone);
+    });
     this.editForm = this.fb.group({
       name: ['', [Validators.required]],
       phone: ['', [Validators.required, Validators.maxLength(9), Validators.minLength(9)]],
